@@ -1,0 +1,336 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { 
+  Home,
+  Eye,
+  Bell,
+  Settings,
+  Shield,
+  FileText,
+  Users,
+  Grid3X3,
+  User,
+  BookOpen,
+  Package,
+  Wrench,
+  HeadphonesIcon,
+  Library,
+  Mail,
+  ChevronRight,
+  ChevronLeft,
+  LogOut,
+  LayoutDashboard,
+  Image,
+  MapPin,
+  FileTextIcon
+} from "lucide-react";
+
+interface DashboardSidebarProps {
+  locale: string;
+}
+
+const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
+  const t = useTranslations("Dashboard");
+  const tCommon = useTranslations("Common");
+  const pathname = usePathname();
+  const router = useRouter();
+  const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // جميع الروابط بالترتيب المطلوب
+  const allLinks = [
+    // Home
+    { 
+      id: "home", 
+      label: t("home"), 
+      icon: <Home size={20} />, 
+      href: `/${locale}`,
+      type: "link",
+      exact: true // هذا الرابط يحتاج تطابق تام
+    },
+    
+    // Visit front page
+    { 
+      id: "visitFrontPage", 
+      label: t("visitFrontPage"), 
+      icon: <Eye size={20} />, 
+      href: `https://admin.const-tech.biz/en`,
+      type: "link",
+      exact: true // هذا الرابط يحتاج تطابق تام
+    },
+    
+    // Notifications
+    { 
+      id: "notifications", 
+      label: t("notifications"), 
+      icon: <Bell size={20} />, 
+      href: `/${locale}/notifications`,
+      type: "link"
+    },
+    
+    // Settings
+    { 
+      id: "settings", 
+      label: t("settings"), 
+      icon: <Settings size={20} />, 
+      href: `/${locale}/settings`,
+      type: "link"
+    },
+    
+    // Privacy policy
+    { 
+      id: "privacyPolicy", 
+      label: t("privacyPolicy"), 
+      icon: <Shield size={20} />, 
+      href: `/${locale}/Privacy-policy`,
+      type: "link"
+    },
+    
+    // Usage policy
+    { 
+      id: "usagePolicy", 
+      label: t("usagePolicy"), 
+      icon: <FileTextIcon size={20} />, 
+      href: `/${locale}/policy-usage`,
+      type: "link"
+    },
+    
+    // Moderators
+    { 
+      id: "moderators", 
+      label: t("moderators"), 
+      icon: <Users size={20} />, 
+      href: `/${locale}/moderators`,
+      type: "link"
+    },
+    
+    // Divider: Site sections
+    {
+      id: "siteSectionsDivider",
+      label: t("siteSections"),
+      type: "divider"
+    },
+    
+    // Users
+    { 
+      id: "users", 
+      label: t("users"), 
+      icon: <User size={20} />, 
+      href: `/${locale}/users`,
+      type: "link"
+    },
+    
+    // Articles
+    { 
+      id: "articles", 
+      label: t("articles"), 
+      icon: <BookOpen size={20} />, 
+      href: `/${locale}/articles`,
+      type: "link"
+    },
+    
+    // Products
+    { 
+      id: "products", 
+      label: t("products"), 
+      icon: <Package size={20} />, 
+      href: `/${locale}/products`,
+      type: "link"
+    },
+    
+    // Site services
+    { 
+      id: "cities", 
+      label: t("cities"), 
+      icon: <Wrench size={20} />, 
+      href: `/${locale}/cities`,
+      type: "link"
+    },
+
+{ 
+  id: "sliders", 
+  label: t("sliders"), 
+  icon: <Image size={20} />, // أيقونة السلايدر / صور
+  href: `/${locale}/sliders`,
+  type: "link"
+},
+{ 
+  id: "pages", 
+  label: t("pages"), 
+  icon: <FileText size={20} />, // أيقونة الصفحات / مستند
+  href: `/${locale}/pages`,
+  type: "link"
+},
+    
+    // Technical support
+    { 
+      id: "technicalSupport", 
+      label: t("technicalSupport"), 
+      icon: <HeadphonesIcon size={20} />, 
+      href: `/${locale}/support`,
+      type: "link"
+    },
+    
+  
+    
+    // Messages
+    { 
+      id: "messages", 
+      label: t("messages"), 
+      icon: <Mail size={20} />, 
+      href: `/${locale}/messages`,
+      type: "link"
+    },
+  ];
+
+  const isActive = (href: string, exact = false) => {
+    if (exact) {
+      // تطابق تام للروابط مثل "/ar" فقط
+      return pathname === href;
+    } else {
+      // تطابق جزئي للروابط الأخرى
+      return pathname === href || pathname.startsWith(`${href}/`);
+    }
+  };
+
+  const handleLogout = () => {
+       "loggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        window.location.href = `/${locale}/login`;
+  };
+
+  return (
+    <>
+      {/* Overlay for mobile */}
+      {isMobile && !collapsed && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={() => setCollapsed(true)}
+        />
+      )}
+      
+      {/* Sidebar */}
+      <aside 
+        className={`
+          fixed md:relative sidebar overflow-y-auto h-screen 
+          bg-gradient-to-b from-gray-900 to-gray-800 
+          text-white transition-all duration-300 z-50
+          ${locale === "ar" ? "right-0 border-l" : "left-0 border-r"} border-gray-700
+          ${collapsed ? "w-16" : "w-72"}
+          ${isMobile && !collapsed ? "translate-x-0" : isMobile ? (locale === "ar" ? "translate-x-full" : "-translate-x-full") : "translate-x-0"}
+        `}
+      >
+        {/* Sidebar Header */}
+        <div className="p-4 border-b border-gray-700 flex items-center justify-between">
+          {!collapsed && (
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                <LayoutDashboard size={20} />
+              </div>
+              <h2 className="font-bold text-lg">{t("sidebarTitle")}</h2>
+            </div>
+          )}
+          
+          {/* Collapse Button */}
+          <button
+            onClick={() => setCollapsed(!collapsed)}
+            className={`
+              p-2 rounded-lg hover:bg-gray-700 transition-colors
+              ${collapsed ? "mx-auto" : ""}
+            `}
+            aria-label={collapsed ? t("expandSidebar") : t("collapseSidebar")}
+          >
+            {collapsed ? 
+              (locale === "ar" ? <ChevronLeft size={20} /> : <ChevronRight size={20} />) : 
+              (locale === "ar" ? <ChevronRight size={20} /> : <ChevronLeft size={20} />)
+            }
+          </button>
+        </div>
+        
+        {/* Navigation Links */}
+        <nav className="p-4 space-y-1 flex-1">
+          {allLinks.map((item) => {
+            if (item.type === "divider") {
+              if (collapsed) return null;
+              
+              return (
+                <div key={item.id} className="pt-4 mt-4 border-t border-gray-700 first:border-0 first:mt-0">
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">
+                    {item.label}
+                  </h3>
+                </div>
+              );
+            }
+            
+            // Regular link
+            return (
+              <Link
+                key={item.id}
+                href={item.href}
+                className={`
+                  flex items-center gap-3 p-3 text-sm rounded-lg transition-all
+                  ${isActive(item.href, item.exact) 
+                    ? "bg-blue-600 text-white" 
+                    : "hover:bg-gray-700 text-gray-300"
+                  }
+                  ${collapsed ? "justify-center" : ""}
+                `}
+                title={collapsed ? item.label : undefined}
+              >
+                <span className="flex-shrink-0">{item.icon}</span>
+                {!collapsed && <span className="truncate">{item.label}</span>}
+              </Link>
+            );
+          })}
+        </nav>
+        
+        {/* Logout Button */}
+        <div className="p-4 border-t border-gray-700">
+          <button
+            onClick={handleLogout}
+            className={`
+              w-full flex items-center gap-3 p-3 rounded-lg 
+              hover:bg-red-600 text-gray-300 transition-all
+              ${collapsed ? "justify-center" : ""}
+            `}
+            title={collapsed ? tCommon("logout") : undefined}
+          >
+            <LogOut size={20} />
+            {!collapsed && <span>{tCommon("logout")}</span>}
+          </button>
+          
+          {/* User Profile - Only show when not collapsed */}
+          {!collapsed && (
+            <div className="pt-4 border-t border-gray-700">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
+                  <User size={20} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium truncate">Admin User</p>
+                  <p className="text-sm text-gray-400 truncate">Administrator</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </aside>
+    </>
+  );
+};
+
+export default Sidebar;

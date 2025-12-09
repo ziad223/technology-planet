@@ -1,0 +1,473 @@
+{
+  "error": {
+    "pageNotFound": "Page Not Found",
+    "pageNotFoundDesc": "Sorry, the page you are looking for does not exist or has been moved.",
+    "backHome": "Go To Home"
+  },
+
+  "Dashboard": {
+    "cities": "Cities",
+  "sliders": "Sliders",
+  "pages": "Pages",
+  "clientsAndProviders": "Clients & Service Providers",
+  "viewAllArticles": "View all articles",
+  "groups": "Groups",
+  "viewAllGroups": "View all groups",
+  "viewSupportMessages": "View support messages",
+  "contactUs": "Contact Us",
+  "viewCommunicationMessages": "View communication messages",
+    "dashboardHome": "Dashboard Home",
+  "clients": "Clients",
+  "viewAllClients": "View all clients",
+  "serviceProviders": "Service Providers",
+  "viewAllProviders": "View all providers",
+  "sections": "Sections",
+  "viewAllSections": "Show all sections",
+  "viewAllProducts": "Show all products",
+     "english": "English",
+    "arabic": "Arabic",
+    "logout": "Logout",
+    "management": "Management",
+    "adminPanel": "Admin Panel",
+    "dashboard": "Dashboard",
+    "categories": "Categories",
+    "products": "Products",
+    "attributes": "Attributes",
+    "coupons": "Coupons",
+    "notifications": "Notifications",
+    "banners": "Banners",
+    "settings": "Settings",
+    "home": "Home",
+    "visitFrontPage": "Visit Front Page",
+    "privacyPolicy": "Privacy Policy",
+    "usagePolicy": "Usage Policy",
+    "moderators": "Moderators",
+    "siteSections": "Site Sections",
+    "users": "Users",
+    "articles": "Articles",
+    "productsList": "Products",
+    "siteServices": "Site Services",
+    "technicalSupport": "Technical Support",
+    "library": "Library",
+    "messages": "Messages",
+    "searchPlaceholder": "Search...",
+    "expandSidebar": "Expand Sidebar",
+    "collapseSidebar": "Collapse Sidebar",
+    "sidebarTitle": "Control Panel",
+    "userProfile": "User Profile",
+    "role": "Role"
+  },
+
+  "Navbar": {
+    "search": "Search",
+    "notifications": "Notifications",
+    "viewAllNotifications": "View all notifications",
+    "profile": "Profile",
+    "admin": "Admin",
+    "toggleMenu": "Toggle menu",
+    "mobileSearch": "Mobile search"
+  },
+
+  "Sidebar": {
+    "home": "Home",
+    "logout": "Logout",
+    "user": "User",
+    "administrator": "Administrator",
+    "recentActivity": "Recent Activity",
+    "systemHealth": "System Health",
+    "storage": "Storage",
+    "usersOnline": "Users Online"
+  },
+
+  "Common": {
+      "viewAll": "View All",
+    "logout": "Logout",
+    "notifications": "Notifications",
+    "admin": "Admin",
+    "administrator": "Administrator",
+    "profile": "Profile",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "refresh": "Refresh",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "confirm": "Confirm",
+    "close": "Close",
+    "open": "Open",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Info",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK"
+  },
+
+  "Language": {
+    "switchToEnglish": "Switch to English",
+    "switchToArabic": "Switch to Arabic",
+    "currentLanguage": "Current Language",
+    "language": "Language"
+  },
+
+  "Notifications": {
+      "cancel": "Cancel",
+  "save": "Save",
+    "notifications": "Notifications",
+  "addNotification": "Add Notification",
+  "table": {
+    "id": "#",
+    "name": "Name",
+    "notification": "Notification",
+    "reading": "Reading"
+  },
+  "emptyTable": "No data available"
+  },
+
+  "Pages": {
+    "dashboard": "Dashboard",
+    "categories": "Categories",
+    "categoriesDescription": "Manage product categories",
+    "products": "Products",
+    "productsDescription": "Manage products and inventory",
+    "attributes": "Attributes",
+    "attributesDescription": "Manage product attributes",
+    "coupons": "Coupons",
+    "couponsDescription": "Manage discount coupons",
+    "notificationsPage": "Notifications",
+    "notificationsDescription": "Manage notifications and alerts",
+    "banners": "Banners",
+    "bannersDescription": "Manage promotional banners",
+    "settings": "Settings",
+    "settingsDescription": "System and application settings"
+  },
+
+  "Statistics": {
+    "totalSales": "Total Sales",
+    "totalOrders": "Total Orders",
+    "totalCustomers": "Total Customers",
+    "totalProducts": "Total Products",
+    "totalUsers": "Total Users",
+    "revenue": "Revenue",
+    "growth": "Growth",
+    "thisMonth": "This Month",
+    "lastMonth": "Last Month",
+    "thisYear": "This Year",
+    "lastYear": "Last Year"
+  },
+
+  "Forms": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "description": "Description",
+    "price": "Price",
+    "quantity": "Quantity",
+    "category": "Category",
+    "status": "Status",
+    "image": "Image",
+    "uploadImage": "Upload Image",
+    "chooseFile": "Choose File",
+    "dragAndDrop": "Drag and drop file here",
+    "required": "Required",
+    "invalidEmail": "Invalid email",
+    "minLength": "Must be at least {{min}} characters",
+    "maxLength": "Must not exceed {{max}} characters",
+    "submit": "Submit",
+    "reset": "Reset"
+  },
+
+  "Tables": {
+    "id": "ID",
+    "actions": "Actions",
+    "createdAt": "Created At",
+    "updatedAt": "Updated At",
+    "noData": "No data",
+    "rowsPerPage": "Rows per page",
+    "of": "of",
+    "selected": "selected",
+    "selectAll": "Select all",
+    "clearSelection": "Clear selection"
+  },
+
+  "Status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "pending": "Pending",
+    "completed": "Completed",
+    "failed": "Failed",
+    "draft": "Draft",
+    "published": "Published",
+    "archived": "Archived",
+    "trashed": "Trashed"
+  },
+
+  "Alerts": {
+    "successTitle": "Success",
+    "errorTitle": "Error",
+    "warningTitle": "Warning",
+    "infoTitle": "Info",
+    "confirmDelete": "Are you sure you want to delete?",
+    "deleteSuccess": "Deleted successfully",
+    "saveSuccess": "Saved successfully",
+    "updateSuccess": "Updated successfully",
+    "operationFailed": "Operation failed"
+  },
+
+  "settingsPage": {
+    "title": "Settings",
+    "basicData": "Basic Data",
+    "nameSite": "Site Name",
+    "adminAge": "Tax Number",
+    "urlSite": "Site URL",
+    "taxNumber": "Tax Number",
+    "address": "Address",
+    "buildingNumber": "Building Number",
+    "street": "Street",
+    "phone": "Phone",
+    "email": "Email",
+    "activateTax": "Activate Tax",
+    "active": "Active",
+    "socialMedia": "Social Media",
+    "whatsapp": "WhatsApp",
+    "snapchat": "Snapchat",
+    "twitter": "Twitter",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "siteStatus": "Site Status",
+    "siteDeactivationMsg": "Site Deactivation Message",
+    "logoImage": "Logo Image",
+    "browserIcon": "Browser Icon",
+    "save": "Save",
+    "inactive" :"Inactive"
+
+  },
+  "privacyPage": {
+    "title": "Privacy Policy"
+  },
+  "policyPage": {
+    "title": "Usage Policy"
+  },
+   "Admins": {
+    "admins": "Admins",
+    "addAdmin": "Add Admin",
+    "cancel": "Cancel",
+    "save": "Save",
+    "emptyTable": "No admins found",
+    "table": {
+          "title": "Users",
+    "id": "ID",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "add": "Add User",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "noData": "No data available",
+    "deleteMessage": "Are you sure you want to delete user {name}?"
+    }
+
+  },
+  "editAdmin": "Edit Admin",
+"deleteAdmin": "Delete Admin",
+"confirmDeleteMessage": "Are you sure you want to delete",
+"edit": "Edit",
+"delete": "Delete",
+"UsersPage": {
+    "cancel": "Cancel",
+    "title": "Users",
+    "id": "ID",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "add": "Add User",
+    "edit": "Edit",
+    "delete": "Delete",
+    "noData": "No data available"
+  },
+  "ArticlesPage": {
+    "titlee": "Articles",
+    "id": "ID",
+    "title": "Title",
+    "author": "Author",
+    "date": "Date",
+    "add": "Add Article",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "noData": "No data available",
+    "deleteMessage": "Are you sure you want to delete article '{title}'?"
+  },
+  "ProductsPage": {
+    "title": "Products",
+    "id": "ID",
+    "image": "Image",
+    "name": "Name",
+    "price": "Price",
+    "stock": "Stock",
+    "add": "Add Product",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "noData": "No data available",
+    "deleteMessage": "Are you sure you want to delete product '{name}'?",
+        "upload": "Upload Image"
+
+  },
+   "cities": {
+    "title": "Cities",
+    "add": "Add City",
+    "city_name": "City Name",
+    "clients_count": "Clients Count",
+    "actions": "Actions",
+
+    "add_city": "Add New City",
+    "edit_city": "Edit City",
+    "delete_city": "Delete City",
+    "delete_confirm": "Are you sure you want to delete",
+    "upload_image": "Upload Image",
+
+    "cancel": "Cancel",
+    "save": "Save",
+    "save_changes": "Save Changes",
+    "delete": "Delete"
+  },
+   "sliders": {
+    "title": "Sliders",
+    "add": "Add Slider",
+    "image": "Image",
+    "title_text": "Title",
+    "description": "Description",
+    "actions": "Actions",
+
+    "add_slider": "Add New Slider",
+    "edit_slider": "Edit Slider",
+    "delete_slider": "Delete Slider",
+    "delete_confirm": "Are you sure you want to delete",
+    "upload_image": "Upload Image",
+
+    "cancel": "Cancel",
+    "save": "Save",
+    "save_changes": "Save Changes",
+    "delete": "Delete"
+  },
+   "pages": {
+    "title": "Pages",
+    "addPage": "Add Page",
+    "editPage": "Edit Page",
+    "deletePage": "Delete Page",
+    "confirmDelete": "Are you sure you want to delete this page?",
+    "pageName": "Page Name",
+    "views": "Views",
+    "enterPageName": "Enter page name...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "empty": "No pages available",
+    "edit": "Edit"
+  },
+    "auth": {
+   "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "remember": "Remember me",
+      "submit": "Login",
+      "noAccount": "Don't have an account?",
+      "register": "Register",
+      "success": "Login successful!",
+      "invalid": "Invalid email or password!"
+    },
+    "register": {
+      "title": "Create New Account",
+      "name": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "submit": "Register",
+      "haveAccount": "Already have an account?",
+      "login": "Login"
+    }
+  },
+   "SupportPage": {
+    "title": "Support Tickets",
+      "noData": "No tickets available",
+    "columns": {
+      "number": "#",
+      "client": "Client",
+      "address": "Address",
+      "category": "Category",
+      "content": "Content",
+      "status": "Status",
+      "comments": "Comments",
+      "actions": "Actions"
+    },
+    "actions": {
+      "addComment": "Add Comment",
+      "editStatus": "Edit Status",
+      "delete": "Delete"
+    },
+    "modal": {
+      "cancel": "Cancel"
+    },
+    "messages": {
+      "noData": "No tickets available",
+      "confirmDelete": "Are you sure you want to delete this ticket?",
+      "commentAdded": "Comment added successfully",
+      "statusUpdated": "Status updated successfully",
+      "ticketDeleted": "Ticket deleted successfully"
+    },
+    "status": {
+      "open": "Open",
+      "inProgress": "In Progress",
+      "closed": "Closed"
+    }
+  },
+  "MessagesPage": {
+    "title": "Messages",
+      "noData": "No messages available",
+    "columns": {
+      "number": "#",
+      "sender": "Sender",
+      "email": "Email",
+      "content": "Content",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "actions": {
+      "addComment": "Add Comment",
+      "editStatus": "Edit Status",
+      "delete": "Delete"
+    },
+    "modal": {
+      "cancel": "Cancel"
+    },
+    "messages": {
+      "noData": "No messages available",
+      "commentAdded": "Comment added successfully",
+      "statusUpdated": "Status updated successfully",
+      "messageDeleted": "Message deleted successfully",
+      "confirmDelete": "Are you sure you want to delete this message?"
+    },
+    "status": {
+      "open": "Open",
+      "inProgress": "In Progress",
+      "closed": "Closed"
+    }
+  }
+
+}

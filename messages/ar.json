@@ -1,0 +1,482 @@
+{
+  "error": {
+    "pageNotFound": "الصفحة غير موجودة",
+    "pageNotFoundDesc": "عذرًا، الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+    "backHome": "الذهاب الي الصفحة الرئيسية"
+  },
+
+  "Dashboard": {
+  "clientsAndProviders": "العملاء ومزودو الخدمة",
+  "viewAllArticles": "عرض كل المقالات",
+  "groups": "المجموعات",
+  "viewAllGroups": "عرض كل المجموعات",
+  "viewSupportMessages": "عرض رسائل الدعم",
+  "contactUs": "اتصل بنا",
+  "viewCommunicationMessages": "عرض رسائل التواصل",
+      "dashboardHome": "الصفحة الرئيسية",
+        "cities": "المدن",
+  "sliders": "السلايدر",
+  "pages": "الصفحات",
+  "clients": "العملاء",
+  "viewAllClients": "عرض جميع العملاء",
+  "serviceProviders": "مزودي الخدمات",
+  "viewAllProviders": "عرض جميع المزودين",
+  "sections": "الأقسام",
+  "viewAllSections": "عرض جميع الأقسام",
+  "viewAllProducts": "عرض جميع المنتجات",
+    "english": "الإنجليزية",
+    "arabic": "العربية",
+    "logout": "تسجيل الخروج",
+    "management": "الإدارة",
+    "adminPanel": "لوحة التحكم",
+    "dashboard": "الرئيسية",
+    "categories": "التصنيفات",
+    "products": "المنتجات",
+    "attributes": "الخصائص",
+    "coupons": "الكوبونات",
+    "notifications": "الإشعارات",
+    "banners": "البنرات",
+    "settings": "الإعدادات",
+    "home": "الرئيسية",
+    "visitFrontPage": "زيارة الصفحة الأمامية",
+    "privacyPolicy": "سياسة الخصوصية",
+    "usagePolicy": "سياسة الاستخدام",
+    "moderators": "المشرفين",
+    "siteSections": "أقسام الموقع",
+    "users": "المستخدمين",
+    "articles": "المقالات",
+    "productsList": "المنتجات",
+    "siteServices": "خدمات الموقع",
+    "technicalSupport": "الدعم الفني",
+    "library": "المكتبة",
+    "messages": "الرسائل",
+    "searchPlaceholder": "بحث...",
+    "expandSidebar": "توسيع القائمة الجانبية",
+    "collapseSidebar": "طي القائمة الجانبية",
+    "sidebarTitle": "لوحة التحكم",
+    "userProfile": "ملف المستخدم",
+    "role": "الدور"
+  },
+
+
+  "Navbar": {
+    "search": "بحث",
+    "notifications": "الإشعارات",
+    "viewAllNotifications": "عرض كل الإشعارات",
+    "profile": "الملف الشخصي",
+    "admin": "مدير",
+    "toggleMenu": "تبديل القائمة",
+    "mobileSearch": "بحث في الجوال"
+  },
+
+  "Sidebar": {
+    "home": "الرئيسية",
+    "logout": "تسجيل الخروج",
+    "user": "المستخدم",
+    "administrator": "مدير النظام",
+    "recentActivity": "النشاط الأخير",
+    "systemHealth": "صحة النظام",
+    "storage": "التخزين",
+    "usersOnline": "المستخدمون المتصلون"
+  },
+
+  "Common": {
+      "viewAll": "عرض الكل",
+    "logout": "تسجيل الخروج",
+    "notifications": "الإشعارات",
+    "admin": "مدير",
+    "administrator": "مسؤول",
+    "profile": "الملف الشخصي",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "add": "إضافة",
+    "search": "بحث",
+    "filter": "تصفية",
+    "refresh": "تحديث",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "confirm": "تأكيد",
+    "close": "إلغاء",
+    "open": "فتح",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجاح",
+    "warning": "تحذير",
+    "info": "معلومات",
+    "yes": "نعم",
+    "no": "لا",
+    "ok": "موافق"
+  },
+
+  "Language": {
+    "switchToEnglish": "التغيير إلى الإنجليزية",
+    "switchToArabic": "التغيير إلى العربية",
+    "currentLanguage": "اللغة الحالية",
+    "language": "اللغة"
+  },
+
+  "Notifications": {
+    "cancel": "إلغاء",
+  "save": "حفظ",
+     "notifications": "الإشعارات",
+  "addNotification": "إضافة إشعار",
+  "table": {
+    "id": "#",
+    "name": "الاسم",
+    "notification": "الإشعار",
+    "reading": "القراءة"
+  },
+  "emptyTable": "لا توجد بيانات"
+  },
+
+  "Pages": {
+    "dashboard": "لوحة التحكم",
+    "categories": "الأقسام",
+    "categoriesDescription": "إدارة أقسام المنتجات",
+    "products": "المنتجات",
+    "productsDescription": "إدارة المنتجات والمخزون",
+    "attributes": "الخصائص",
+    "attributesDescription": "إدارة خصائص المنتجات",
+    "coupons": "الكوبونات",
+    "couponsDescription": "إدارة كوبونات الخصم",
+    "notificationsPage": "الإشعارات",
+    "notificationsDescription": "إدارة الإشعارات والتنبيهات",
+    "banners": "اللافتات",
+    "bannersDescription": "إدارة اللافتات الإعلانية",
+    "settings": "الإعدادات",
+    "settingsDescription": "إعدادات النظام والتطبيق"
+  },
+
+  "Statistics": {
+    "totalSales": "إجمالي المبيعات",
+    "totalOrders": "إجمالي الطلبات",
+    "totalCustomers": "إجمالي العملاء",
+    "totalProducts": "إجمالي المنتجات",
+    "totalUsers": "إجمالي المستخدمين",
+    "revenue": "الإيرادات",
+    "growth": "النمو",
+    "thisMonth": "هذا الشهر",
+    "lastMonth": "الشهر الماضي",
+    "thisYear": "هذا العام",
+    "lastYear": "العام الماضي"
+  },
+
+  "Forms": {
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "address": "العنوان",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "description": "الوصف",
+    "price": "السعر",
+    "quantity": "الكمية",
+    "category": "الفئة",
+    "status": "الحالة",
+    "image": "صورة",
+    "uploadImage": "رفع صورة",
+    "chooseFile": "اختر ملف",
+    "dragAndDrop": "اسحب وأفلت الملف هنا",
+    "required": "مطلوب",
+    "invalidEmail": "بريد إلكتروني غير صالح",
+    "minLength": "يجب أن يكون على الأقل {{min}} أحرف",
+    "maxLength": "يجب ألا يزيد عن {{max}} أحرف",
+    "submit": "إرسال",
+    "reset": "إعادة تعيين"
+  },
+
+  "Tables": {
+    "id": "المعرف",
+    "actions": "الإجراءات",
+    "createdAt": "تاريخ الإنشاء",
+    "updatedAt": "تاريخ التحديث",
+    "noData": "لا توجد بيانات",
+    "rowsPerPage": "صفوف لكل صفحة",
+    "of": "من",
+    "selected": "محدد",
+    "selectAll": "تحديد الكل",
+    "clearSelection": "مسح التحديد"
+  },
+
+  "Status": {
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "pending": "قيد الانتظار",
+    "completed": "مكتمل",
+    "failed": "فشل",
+    "draft": "مسودة",
+    "published": "منشور",
+    "archived": "مؤرشف",
+    "trashed": "محذوف"
+  },
+
+  "Alerts": {
+    "successTitle": "نجاح",
+    "errorTitle": "خطأ",
+    "warningTitle": "تحذير",
+    "infoTitle": "معلومات",
+    "confirmDelete": "هل أنت متأكد من الحذف؟",
+    "deleteSuccess": "تم الحذف بنجاح",
+    "saveSuccess": "تم الحفظ بنجاح",
+    "updateSuccess": "تم التحديث بنجاح",
+    "operationFailed": "فشلت العملية"
+  },
+
+  "Settings": {
+    "general": "عام",
+    "appearance": "المظهر",
+    "security": "الأمان",
+    "notifications": "الإشعارات",
+    "language": "اللغة",
+    "timezone": "المنطقة الزمنية",
+    "dateFormat": "تنسيق التاريخ",
+    "timeFormat": "تنسيق الوقت",
+    "theme": "السمة",
+    "light": "فاتح",
+    "dark": "داكن",
+    "auto": "تلقائي",
+    "saveChanges": "حفظ التغييرات",
+    "resetToDefault": "إعادة التعيين إلى الافتراضي"
+  },
+   "settingsPage": {
+    "title": "الإعدادات",
+    "basicData": "البيانات الأساسية",
+    "nameSite": "اسم الموقع",
+    "adminAge": "الرقم الضريبي",
+    "urlSite": "رابط الموقع",
+    "taxNumber": "الرقم الضريبي",
+    "address": "العنوان",
+    "buildingNumber": "رقم المبنى",
+    "street": "الشارع",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "activateTax": "تفعيل الضريبة",
+    "active": "نشط",
+    "socialMedia": "التواصل الاجتماعي",
+    "whatsapp": "واتساب",
+    "snapchat": "سناب شات",
+    "twitter": "تويتر",
+    "facebook": "فيسبوك",
+    "instagram": "إنستجرام",
+    "siteStatus": "حالة الموقع",
+    "siteDeactivationMsg": "رسالة إيقاف الموقع",
+    "logoImage": "شعار الموقع",
+    "browserIcon": "أيقونة المتصفح",
+    "save": "حفظ",
+    "inactive" :"غير نشط"
+  },
+  "privacyPage": {
+    "title": "سياسة الخصوصية"
+  },
+  "policyPage": {
+    "title": " سياسة الاستخدام"
+  },
+  "Admins": {
+    "admins": "المشرفين",
+    "addAdmin": "إضافة مشرف",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "emptyTable": "لا يوجد مشرفين",
+    "table": {
+      "id": "المعرف",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "group": "المجموعة",
+      "control": "التحكم"
+    }
+  },
+  "UsersPage": {
+      "title": "المستخدمين",
+    "id": "ID",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "role": "الصلاحية",
+    "add": "إضافة مستخدم",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "noData": "لا توجد بيانات",
+    "deleteMessage": "هل أنت متأكد من حذف المستخدم {name}؟"
+  },
+"editAdmin": "تعديل المشرف",
+"deleteAdmin": "حذف المشرف",
+"confirmDeleteMessage": "هل أنت متأكد أنك تريد حذف",
+"edit": "تعديل",
+"delete": "حذف",
+"ArticlesPage": {
+    "titlee": "المقالات",
+    "id": "ID",
+    "title": "العنوان",
+    "author": "المؤلف",
+    "date": "التاريخ",
+    "add": "إضافة مقال",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "noData": "لا توجد بيانات",
+    "deleteMessage": "هل أنت متأكد من حذف المقال '{title}'؟"
+  },
+  "ProductsPage": {
+    "title": "المنتجات",
+    "id": "ID",
+    "image": "الصورة",
+    "name": "الاسم",
+    "price": "السعر",
+    "stock": "المخزون",
+    "add": "إضافة منتج",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "noData": "لا توجد بيانات",
+    "deleteMessage": "هل أنت متأكد من حذف المنتج '{name}'؟",
+      "upload": "رفع صورة"
+  },
+    "cities": {
+    "title": "المدن",
+    "add": "إضافة مدينة",
+    "city_name": "اسم المدينة",
+    "clients_count": "عدد العملاء",
+    "actions": "الإجراءات",
+
+    "add_city": "إضافة مدينة جديدة",
+    "edit_city": "تعديل المدينة",
+    "delete_city": "حذف المدينة",
+    "delete_confirm": "هل أنت متأكد من حذف",
+    "upload_image": "رفع الصورة",
+
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "save_changes": "حفظ التعديلات",
+    "delete": "حذف"
+  },
+   "sliders": {
+    "title": "السلايدر",
+    "add": "إضافة سلايدر",
+    "image": "الصورة",
+    "title_text": "العنوان",
+    "description": "الوصف",
+    "actions": "الإجراءات",
+
+    "add_slider": "إضافة سلايدر جديد",
+    "edit_slider": "تعديل السلايدر",
+    "delete_slider": "حذف السلايدر",
+    "delete_confirm": "هل أنت متأكد من حذف",
+    "upload_image": "رفع الصورة",
+
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "save_changes": "حفظ التعديلات",
+    "delete": "حذف"
+  },
+   "pages": {
+    "title": "الصفحات",
+    "addPage": "إضافة صفحة",
+    "editPage": "تعديل الصفحة",
+    "deletePage": "حذف الصفحة",
+    "confirmDelete": "هل أنت متأكد من حذف هذه الصفحة؟",
+    "pageName": "اسم الصفحة",
+    "views": "عدد الزيارات",
+    "enterPageName": "اكتب اسم الصفحة...",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "empty": "لا توجد صفحات متاحة",
+    "edit": "تعديل"
+  },
+   "auth": {
+    "login": {
+      "title": "تسجيل الدخول",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "remember": "تذكرني",
+      "submit": "تسجيل الدخول",
+      "noAccount": "ليس لديك حساب؟",
+      "register": "سجل الآن",
+      "success": "تم تسجيل الدخول بنجاح!",
+      "invalid": "البريد الإلكتروني أو كلمة المرور غير صحيحة!"
+    },
+    "register": {
+      "title": "إنشاء حساب جديد",
+      "name": "الاسم الكامل",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "submit": "تسجيل",
+      "haveAccount": "هل لديك حساب بالفعل؟",
+      "login": "تسجيل الدخول"
+    }
+  },
+   "SupportPage": {
+    "title": "طلبات الدعم الفني",
+      "noData": "لا توجد طلبات حالياً",
+    "columns": {
+      "number": "#",
+      "client": "العميل",
+      "address": "العنوان",
+      "category": "الفئة",
+      "content": "المحتوى",
+      "status": "الحالة",
+      "comments": "التعليقات",
+      "actions": "العمليات"
+    },
+    "actions": {
+      "addComment": "إضافة تعليق",
+      "editStatus": "تغيير الحالة",
+      "delete": "حذف"
+    },
+    "modal": {
+      "cancel": "إلغاء"
+    },
+    "messages": {
+      "noData": "لا توجد طلبات حالياً",
+      "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا الطلب؟",
+      "commentAdded": "تمت إضافة التعليق بنجاح",
+      "statusUpdated": "تم تحديث الحالة بنجاح",
+      "ticketDeleted": "تم حذف الطلب بنجاح"
+    },
+    "status": {
+      "open": "مفتوح",
+      "inProgress": "قيد المعالجة",
+      "closed": "مغلق"
+    }
+  },
+   "MessagesPage": {
+    "title": "الرسائل",
+      "noData": "لا توجد رسائل حالياً",
+    "columns": {
+      "number": "#",
+      "sender": "المرسل",
+      "email": "البريد الإلكتروني",
+      "content": "المحتوى",
+      "status": "الحالة",
+      "actions": "العمليات"
+    },
+    "actions": {
+      "addComment": "إضافة تعليق",
+      "editStatus": "تغيير الحالة",
+      "delete": "حذف"
+    },
+    "modal": {
+      "cancel": "إلغاء"
+    },
+    "messages": {
+      "noData": "لا توجد رسائل حالياً",
+      "commentAdded": "تمت إضافة التعليق بنجاح",
+      "statusUpdated": "تم تحديث الحالة بنجاح",
+      "messageDeleted": "تم حذف الرسالة بنجاح",
+      "confirmDelete": "هل أنت متأكد أنك تريد حذف هذه الرسالة؟"
+    },
+    "status": {
+      "open": "مفتوحة",
+      "inProgress": "قيد المعالجة",
+      "closed": "مغلقة"
+    }
+  }
+
+}
