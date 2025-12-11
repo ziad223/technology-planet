@@ -92,7 +92,10 @@ export default function SettingsForm() {
           <label className="block mb-2 font-medium">{t('street')}</label>
           <input {...register('street')} className="w-full border rounded px-4 py-2 focus:outline-none focus:border-blue-500" />
         </div>
-        <div>
+          
+      </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div>
           <label className="block mb-2 font-medium">{t('phone')}</label>
           <input {...register('phone')} className="w-full border rounded px-4 py-2 focus:outline-none focus:border-blue-500" />
         </div>
@@ -100,16 +103,9 @@ export default function SettingsForm() {
           <label className="block mb-2 font-medium">{t('email')}</label>
           <input {...register('email')} className="w-full border rounded px-4 py-2 focus:outline-none focus:border-blue-500" />
         </div>
-               <div className='col-span-2'>
 <CustomSelect control={control} name="activateTax" label={t('activateTax')} options={statusOptions} />
-               </div>
-               <div className='col-span-2'>
         <CustomSelect control={control} name="siteStatus" label={t('siteStatus')} options={statusOptions} />
-      </div>
-      </div>
-
-      
-
+    </div>
      
 
       <div>
