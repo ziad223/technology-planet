@@ -383,14 +383,20 @@
     "auth": {
    "login": {
       "title": "Login",
+      "subtitle": "Enter your account details to continue",
+      
       "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "emailRequired": "Email is required",
+
       "password": "Password",
-      "remember": "Remember me",
+      "passwordPlaceholder": "Enter your password",
+      "passwordRequired": "Password is required",
+
       "submit": "Login",
-      "noAccount": "Don't have an account?",
-      "register": "Register",
-      "success": "Login successful!",
-      "invalid": "Invalid email or password!"
+
+      "success": "Logged in successfully",
+      "invalid": "Invalid email or password"
     },
     "register": {
       "title": "Create New Account",
