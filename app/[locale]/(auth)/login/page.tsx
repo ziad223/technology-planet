@@ -26,7 +26,7 @@ export default function LoginPage() {
       toast.success(t("success"));
 
       setTimeout(() => {
-        router.push(`/${locale}`);
+       window.location.href = (`/${locale}`);
       }, 1200);
     } else {
       toast.error(t("invalid"));
