@@ -26,7 +26,9 @@ import {
   LayoutDashboard,
   Image,
   MapPin,
-  FileTextIcon
+  FileTextIcon,
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
 
 interface DashboardSidebarProps {
@@ -40,6 +42,7 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -61,7 +64,7 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
       icon: <Home size={20} />, 
       href: `/${locale}`,
       type: "link",
-      exact: true // هذا الرابط يحتاج تطابق تام
+      exact: true
     },
     
     // Visit front page
@@ -71,7 +74,7 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
       icon: <Eye size={20} />, 
       href: `https://admin.const-tech.biz/en`,
       type: "link",
-      exact: true // هذا الرابط يحتاج تطابق تام
+      exact: true
     },
     
     // Notifications
@@ -83,40 +86,11 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
       type: "link"
     },
     
-    // Settings
-    { 
-      id: "settings", 
-      label: t("settings"), 
-      icon: <Settings size={20} />, 
-      href: `/${locale}/settings`,
-      type: "link"
-    },
-    
-    // Privacy policy
-    { 
-      id: "privacyPolicy", 
-      label: t("privacyPolicy"), 
-      icon: <Shield size={20} />, 
-      href: `/${locale}/Privacy-policy`,
-      type: "link"
-    },
-    
-    // Usage policy
-    { 
-      id: "usagePolicy", 
-      label: t("usagePolicy"), 
-      icon: <FileTextIcon size={20} />, 
-      href: `/${locale}/policy-usage`,
-      type: "link"
-    },
-    
-    // Moderators
-    { 
-      id: "moderators", 
-      label: t("moderators"), 
-      icon: <Users size={20} />, 
-      href: `/${locale}/moderators`,
-      type: "link"
+    // Divider: Settings section
+    {
+      id: "settingsDivider",
+      label: t("settings"),
+      type: "divider"
     },
     
     // Divider: Site sections
@@ -153,7 +127,7 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
       type: "link"
     },
     
-    // Site services
+    // Site services / Cities
     { 
       id: "cities", 
       label: t("cities"), 
@@ -162,20 +136,23 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
       type: "link"
     },
 
-{ 
-  id: "sliders", 
-  label: t("sliders"), 
-  icon: <Image size={20} />, // أيقونة السلايدر / صور
-  href: `/${locale}/sliders`,
-  type: "link"
-},
-{ 
-  id: "pages", 
-  label: t("pages"), 
-  icon: <FileText size={20} />, // أيقونة الصفحات / مستند
-  href: `/${locale}/pages`,
-  type: "link"
-},
+    // Sliders
+    { 
+      id: "sliders", 
+      label: t("sliders"), 
+      icon: <Image size={20} />,
+      href: `/${locale}/sliders`,
+      type: "link"
+    },
+
+    // Pages
+    { 
+      id: "pages", 
+      label: t("pages"), 
+      icon: <FileText size={20} />,
+      href: `/${locale}/pages`,
+      type: "link"
+    },
     
     // Technical support
     { 
@@ -185,8 +162,6 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
       href: `/${locale}/support`,
       type: "link"
     },
-    
-  
     
     // Messages
     { 
@@ -198,20 +173,43 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
     },
   ];
 
+  // روابط الإعدادات الداخلية
+  const settingsLinks = [
+    { 
+      id: "privacyPolicy", 
+      label: t("privacyPolicy"), 
+      icon: <Shield size={18} />, 
+      href: `/${locale}/Privacy-policy`
+    },
+    { 
+      id: "usagePolicy", 
+      label: t("usagePolicy"), 
+      icon: <FileTextIcon size={18} />, 
+      href: `/${locale}/policy-usage`
+    },
+    { 
+      id: "moderators", 
+      label: t("moderators"), 
+      icon: <Users size={18} />, 
+      href: `/${locale}/moderators`
+    }
+  ];
+
   const isActive = (href: string, exact = false) => {
     if (exact) {
-      // تطابق تام للروابط مثل "/ar" فقط
       return pathname === href;
     } else {
-      // تطابق جزئي للروابط الأخرى
       return pathname === href || pathname.startsWith(`${href}/`);
     }
   };
 
   const handleLogout = () => {
-       "loggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-        window.location.href = `/${locale}/login`;
+    document.cookie = "loggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    window.location.href = `/${locale}/login`;
   };
+
+  // التحقق إذا كان أي رابط في الإعدادات نشط
+  const isSettingsActive = settingsLinks.some(link => isActive(link.href));
 
   return (
     <>
@@ -267,8 +265,61 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
             if (item.type === "divider") {
               if (collapsed) return null;
               
+              if (item.id === "settingsDivider") {
+                return (
+                  <>
+                    <div key={item.id} className="pt-4 mt-4 border-t border-gray-700">
+                      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">
+                        {item.label}
+                      </h3>
+                    </div>
+                    
+                    {/* Settings Accordion Button */}
+                    <button
+                      onClick={() => setSettingsOpen(!settingsOpen)}
+                      className={`
+                        w-full flex items-center justify-between p-3 rounded-lg 
+                        transition-all text-sm mt-2
+                        ${isSettingsActive || settingsOpen ? "bg-blue-900/30 text-white" : "hover:bg-gray-700 text-gray-300"}
+                      `}
+                    >
+                      <div className="flex items-center gap-3">
+                        <Settings size={20} />
+                        <span>{t("settings")}</span>
+                      </div>
+                      <div className={`transition-transform duration-200 ${settingsOpen ? "rotate-180" : ""}`}>
+                        <ChevronDown size={16} />
+                      </div>
+                    </button>
+                    
+                    {/* Settings Submenu */}
+                    {settingsOpen && (
+                      <div className="ml-8 mt-2 space-y-1 pl-3 border-l-2 border-gray-600">
+                        {settingsLinks.map((subItem) => (
+                          <Link
+                            key={subItem.id}
+                            href={subItem.href}
+                            className={`
+                              flex items-center gap-3 p-2 text-sm rounded-lg transition-all
+                              ${isActive(subItem.href) 
+                                ? "bg-blue-600 text-white" 
+                                : "hover:bg-gray-700 text-gray-300"
+                              }
+                            `}
+                          >
+                            <span className="flex-shrink-0">{subItem.icon}</span>
+                            <span className="truncate">{subItem.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                );
+              }
+              
+              // Other dividers
               return (
-                <div key={item.id} className="pt-4 mt-4 border-t border-gray-700 first:border-0 first:mt-0">
+                <div key={item.id} className="pt-4 mt-4 border-t border-gray-700">
                   <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">
                     {item.label}
                   </h3>
@@ -296,6 +347,21 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
               </Link>
             );
           })}
+          
+          {/* Collapsed version of Settings - Just show icon */}
+          {collapsed && (
+            <button
+              onClick={() => setSettingsOpen(!settingsOpen)}
+              className={`
+                w-full flex items-center justify-center p-3 text-sm rounded-lg 
+                transition-all mt-4
+                ${isSettingsActive || settingsOpen ? "bg-blue-900/30 text-white" : "hover:bg-gray-700 text-gray-300"}
+              `}
+              title={t("settings")}
+            >
+              <Settings size={20} />
+            </button>
+          )}
         </nav>
         
         {/* Logout Button */}

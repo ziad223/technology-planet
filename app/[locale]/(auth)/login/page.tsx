@@ -1,137 +1,402 @@
 "use client";
 
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast, ToastContainer } from "react-toastify";
-import { useRouter } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
-import Image from "next/image";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { 
+  Home,
+  Eye,
+  Bell,
+  Settings,
+  Shield,
+  FileText,
+  Users,
+  Grid3X3,
+  User,
+  BookOpen,
+  Package,
+  Wrench,
+  HeadphonesIcon,
+  Library,
+  Mail,
+  ChevronRight,
+  ChevronLeft,
+  LogOut,
+  LayoutDashboard,
+  Image,
+  MapPin,
+  FileTextIcon,
+  ChevronDown,
+  ChevronUp
+} from "lucide-react";
 
-export default function LoginPage() {
-  const [showPassword, setShowPassword] = useState(false);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+interface DashboardSidebarProps {
+  locale: string;
+}
 
+const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
+  const t = useTranslations("Dashboard");
+  const tCommon = useTranslations("Common");
+  const pathname = usePathname();
   const router = useRouter();
-  const locale = useLocale();
-  const t = useTranslations("auth.login");
+  const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
-  const onSubmit = (data) => {
-    const { email, password } = data;
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
-    if (email === "admin@admin.com" && password === "123456") {
-      // 👉 تخزين الدخول في Cookie
-      document.cookie = "loggedIn=true; path=/";
+  // جميع الروابط بالترتيب المطلوب
+  const allLinks = [
+    // Home
+    { 
+      id: "home", 
+      label: t("home"), 
+      icon: <Home size={20} />, 
+      href: `/${locale}`,
+      type: "link",
+      exact: true
+    },
+    
+    // Visit front page
+    { 
+      id: "visitFrontPage", 
+      label: t("visitFrontPage"), 
+      icon: <Eye size={20} />, 
+      href: `https://admin.const-tech.biz/en`,
+      type: "link",
+      exact: true
+    },
+    
+    // Notifications
+    { 
+      id: "notifications", 
+      label: t("notifications"), 
+      icon: <Bell size={20} />, 
+      href: `/${locale}/notifications`,
+      type: "link"
+    },
+    
+    // Divider: Settings section
+    {
+      id: "settingsDivider",
+      label: t("settings"),
+      type: "divider"
+    },
+    
+    // Divider: Site sections
+    {
+      id: "siteSectionsDivider",
+      label: t("siteSections"),
+      type: "divider"
+    },
+    
+    // Users
+    { 
+      id: "users", 
+      label: t("users"), 
+      icon: <User size={20} />, 
+      href: `/${locale}/users`,
+      type: "link"
+    },
+    
+    // Articles
+    { 
+      id: "articles", 
+      label: t("articles"), 
+      icon: <BookOpen size={20} />, 
+      href: `/${locale}/articles`,
+      type: "link"
+    },
+    
+    // Products
+    { 
+      id: "products", 
+      label: t("products"), 
+      icon: <Package size={20} />, 
+      href: `/${locale}/products`,
+      type: "link"
+    },
+    
+    // Site services / Cities
+    { 
+      id: "cities", 
+      label: t("cities"), 
+      icon: <Wrench size={20} />, 
+      href: `/${locale}/cities`,
+      type: "link"
+    },
 
-      toast.success(t("success"));
+    // Sliders
+    { 
+      id: "sliders", 
+      label: t("sliders"), 
+      icon: <Image size={20} />,
+      href: `/${locale}/sliders`,
+      type: "link"
+    },
 
-      setTimeout(() => {
-        window.location.href=(`/${locale}`);
-      }, 1200);
+    // Pages
+    { 
+      id: "pages", 
+      label: t("pages"), 
+      icon: <FileText size={20} />,
+      href: `/${locale}/pages`,
+      type: "link"
+    },
+    
+    // Technical support
+    { 
+      id: "technicalSupport", 
+      label: t("technicalSupport"), 
+      icon: <HeadphonesIcon size={20} />, 
+      href: `/${locale}/support`,
+      type: "link"
+    },
+    
+    // Messages
+    { 
+      id: "messages", 
+      label: t("messages"), 
+      icon: <Mail size={20} />, 
+      href: `/${locale}/messages`,
+      type: "link"
+    },
+  ];
+
+  // روابط الإعدادات الداخلية
+  const settingsLinks = [
+    { 
+      id: "privacyPolicy", 
+      label: t("privacyPolicy"), 
+      icon: <Shield size={18} />, 
+      href: `/${locale}/Privacy-policy`
+    },
+    { 
+      id: "usagePolicy", 
+      label: t("usagePolicy"), 
+      icon: <FileTextIcon size={18} />, 
+      href: `/${locale}/policy-usage`
+    },
+    { 
+      id: "moderators", 
+      label: t("moderators"), 
+      icon: <Users size={18} />, 
+      href: `/${locale}/moderators`
+    }
+  ];
+
+  const isActive = (href: string, exact = false) => {
+    if (exact) {
+      return pathname === href;
     } else {
-      toast.error(t("invalid"));
+      return pathname === href || pathname.startsWith(`${href}/`);
     }
   };
 
+  const handleLogout = () => {
+    document.cookie = "loggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    window.location.href = `/${locale}/login`;
+  };
+
+  // التحقق إذا كان أي رابط في الإعدادات نشط
+  const isSettingsActive = settingsLinks.some(link => isActive(link.href));
+
   return (
-    <div className="flex flex-col-reverse lg:flex-row gap-10 min-h-screen">
-      <ToastContainer position="top-right" autoClose={1500} />
-
-      {/* LEFT FORM SIDE */}
-      <div className="flex flex-col text-center lg:text-start w-full lg:w-1/2 px-6 lg:px-12 py-10">
-        <Image
-          width={200}
-          height={200}
-          src="/images/logo7.png"
-          alt="logo"
-          className="w-[120px] h-[120px] lg:w-[350px] lg:h-[200px]"
+    <>
+      {/* Overlay for mobile */}
+      {isMobile && !collapsed && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={() => setCollapsed(true)}
         />
-
-        <h2 className="text-xl lg:text-[24px] font-semibold mt-5">{t("title")}</h2>
-        <h3 className="mt-1 text-gray-500 text-sm lg:text-base">
-          {t("subtitle")}
-        </h3>
-
-        <form className="mt-8 w-full max-w-md" onSubmit={handleSubmit(onSubmit)}>
-
-          {/* EMAIL */}
-          <div className="flex flex-col gap-3">
-            <label className="font-semibold text-sm lg:text-base text-right">{t("email")}</label>
-            <div className="relative w-full">
-              <input
-                type="email"
-                {...register("email", { required: t("emailRequired") })}
-                className="h-[50px] rounded-lg border border-gray-300 bg-transparent outline-none px-5 w-full"
-                placeholder={t("emailPlaceholder")}
-              />
-              <Image
-                width={35}
-                height={35}
-                src="/images/login-email.svg"
-                alt="email-icon"
-                className="absolute left-3 top-1/2 -translate-y-1/2 opacity-70"
-              />
+      )}
+      
+      {/* Sidebar */}
+      <aside 
+        className={`
+          fixed md:relative sidebar overflow-y-auto h-screen 
+          bg-gradient-to-b from-gray-900 to-gray-800 
+          text-white transition-all duration-300 z-50
+          ${locale === "ar" ? "right-0 border-l" : "left-0 border-r"} border-gray-700
+          ${collapsed ? "w-16" : "w-72"}
+          ${isMobile && !collapsed ? "translate-x-0" : isMobile ? (locale === "ar" ? "translate-x-full" : "-translate-x-full") : "translate-x-0"}
+        `}
+      >
+        {/* Sidebar Header */}
+        <div className="p-4 border-b border-gray-700 flex items-center justify-between">
+          {!collapsed && (
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                <LayoutDashboard size={20} />
+              </div>
+              <h2 className="font-bold text-lg">{t("sidebarTitle")}</h2>
             </div>
-            {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
-          </div>
-
-          {/* PASSWORD */}
-          <div className="flex flex-col gap-3 mt-5">
-            <label className="font-semibold text-sm lg:text-base text-right">{t("password")}</label>
-            <div className="relative w-full">
-              <input
-                type={showPassword ? "text" : "password"}
-                {...register("password", { required: t("passwordRequired") })}
-                className="h-[50px] rounded-lg border border-gray-300 bg-transparent outline-none px-5 w-full"
-                placeholder={t("passwordPlaceholder")}
-              />
-
-              <Image
-                width={35}
-                height={35}
-                src="/images/login-eye.svg"
-                alt="eye-icon"
-                className="absolute left-3 top-1/2 -translate-y-1/2 opacity-70 cursor-pointer"
-                onClick={() => setShowPassword(!showPassword)}
-              />
-            </div>
-            {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
-          </div>
-
-          {/* SUBMIT BUTTON */}
+          )}
+          
+          {/* Collapse Button */}
           <button
-            type="submit"
-            className="mt-6 w-full bg-[#09adce] text-white py-3 rounded-lg font-semibold hover:bg-[#0894ad] transition"
+            onClick={() => setCollapsed(!collapsed)}
+            className={`
+              p-2 rounded-lg hover:bg-gray-700 transition-colors
+              ${collapsed ? "mx-auto" : ""}
+            `}
+            aria-label={collapsed ? t("expandSidebar") : t("collapseSidebar")}
           >
-            {t("submit")}
+            {collapsed ? 
+              (locale === "ar" ? <ChevronLeft size={20} /> : <ChevronRight size={20} />) : 
+              (locale === "ar" ? <ChevronRight size={20} /> : <ChevronLeft size={20} />)
+            }
           </button>
-        </form>
-      </div>
-
-      {/* RIGHT IMAGE SIDE */}
-      <div className="relative h-[300px] lg:h-screen w-full lg:w-1/2">
-        <Image
-          fill
-          src="/images/login-bg.jpeg"
-          alt="bg"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-[#09adce]/40"></div>
-
-        <div className="absolute inset-0 text-white p-6 lg:p-20 flex flex-col justify-center items-center lg:items-end text-center lg:text-right">
-        
-
-          <div className="mt-5">
-            <h1 className="text-xl lg:text-[40px] font-bold leading-[35px] lg:leading-[55px]">
-              برنامج ادارة وتأجير قاعات الافراح
-            </h1>
-            <h2 className="text-lg lg:text-[30px] font-semibold leading-[28px] lg:leading-[45px]">
-              Wedding hall management and rental program
-            </h2>
-            <p className="text-base lg:text-xl mt-6 lg:mt-20">شركة كواكب التقنية</p>
-          </div>
         </div>
-      </div>
-    </div>
+        
+        {/* Navigation Links */}
+        <nav className="p-4 space-y-1 flex-1">
+          {allLinks.map((item) => {
+            if (item.type === "divider") {
+              if (collapsed) return null;
+              
+              if (item.id === "settingsDivider") {
+                return (
+                  <>
+                    <div key={item.id} className="pt-4 mt-4 border-t border-gray-700">
+                      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">
+                        {item.label}
+                      </h3>
+                    </div>
+                    
+                    {/* Settings Accordion Button */}
+                    <button
+                      onClick={() => setSettingsOpen(!settingsOpen)}
+                      className={`
+                        w-full flex items-center justify-between p-3 rounded-lg 
+                        transition-all text-sm mt-2
+                        ${isSettingsActive || settingsOpen ? "bg-blue-900/30 text-white" : "hover:bg-gray-700 text-gray-300"}
+                      `}
+                    >
+                      <div className="flex items-center gap-3">
+                        <Settings size={20} />
+                        <span>{t("settings")}</span>
+                      </div>
+                      <div className={`transition-transform duration-200 ${settingsOpen ? "rotate-180" : ""}`}>
+                        <ChevronDown size={16} />
+                      </div>
+                    </button>
+                    
+                    {/* Settings Submenu */}
+                    {settingsOpen && (
+                      <div className="ml-8 mt-2 space-y-1 pl-3 border-l-2 border-gray-600">
+                        {settingsLinks.map((subItem) => (
+                          <Link
+                            key={subItem.id}
+                            href={subItem.href}
+                            className={`
+                              flex items-center gap-3 p-2 text-sm rounded-lg transition-all
+                              ${isActive(subItem.href) 
+                                ? "bg-blue-600 text-white" 
+                                : "hover:bg-gray-700 text-gray-300"
+                              }
+                            `}
+                          >
+                            <span className="flex-shrink-0">{subItem.icon}</span>
+                            <span className="truncate">{subItem.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                );
+              }
+              
+              // Other dividers
+              return (
+                <div key={item.id} className="pt-4 mt-4 border-t border-gray-700">
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">
+                    {item.label}
+                  </h3>
+                </div>
+              );
+            }
+            
+            // Regular link
+            return (
+              <Link
+                key={item.id}
+                href={item.href}
+                className={`
+                  flex items-center gap-3 p-3 text-sm rounded-lg transition-all
+                  ${isActive(item.href, item.exact) 
+                    ? "bg-blue-600 text-white" 
+                    : "hover:bg-gray-700 text-gray-300"
+                  }
+                  ${collapsed ? "justify-center" : ""}
+                `}
+                title={collapsed ? item.label : undefined}
+              >
+                <span className="flex-shrink-0">{item.icon}</span>
+                {!collapsed && <span className="truncate">{item.label}</span>}
+              </Link>
+            );
+          })}
+          
+          {/* Collapsed version of Settings - Just show icon */}
+          {collapsed && (
+            <button
+              onClick={() => setSettingsOpen(!settingsOpen)}
+              className={`
+                w-full flex items-center justify-center p-3 text-sm rounded-lg 
+                transition-all mt-4
+                ${isSettingsActive || settingsOpen ? "bg-blue-900/30 text-white" : "hover:bg-gray-700 text-gray-300"}
+              `}
+              title={t("settings")}
+            >
+              <Settings size={20} />
+            </button>
+          )}
+        </nav>
+        
+        {/* Logout Button */}
+        <div className="p-4 border-t border-gray-700">
+          <button
+            onClick={handleLogout}
+            className={`
+              w-full flex items-center gap-3 p-3 rounded-lg 
+              hover:bg-red-600 text-gray-300 transition-all
+              ${collapsed ? "justify-center" : ""}
+            `}
+            title={collapsed ? tCommon("logout") : undefined}
+          >
+            <LogOut size={20} />
+            {!collapsed && <span>{tCommon("logout")}</span>}
+          </button>
+          
+          {/* User Profile - Only show when not collapsed */}
+          {!collapsed && (
+            <div className="pt-4 border-t border-gray-700">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
+                  <User size={20} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium truncate">Admin User</p>
+                  <p className="text-sm text-gray-400 truncate">Administrator</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </aside>
+    </>
   );
-}
+};
+
+export default Sidebar;
