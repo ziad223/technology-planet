@@ -10,14 +10,14 @@ import { Trash2 , Edit } from 'lucide-react';
 export default function UsersPage() {
   const t = useTranslations('UsersPage');
 
-  const [users, setUsers] = useState([
-    { id: 1, name: 'Ziad Abdalla', email: 'ziad@example.com', role: 'Admin', type: 'عميل محتمل' },
-    { id: 2, name: 'Ahmed Ali', email: 'ahmed@example.com', role: 'User', type: 'عميل مهتم' },
-    { id: 3, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل حقيقي' },
-    { id: 4, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل مهتم' },
-    { id: 5, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل حقيقي' },
-    { id: 6, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل مهتم' },
-  ]);
+ const [users, setUsers] = useState([
+  { id: 1, name: 'Ziad Abdalla', email: 'ziad@example.com', role: 'Admin', type: 'عميل محتمل', image: '/images/hero-2.webp' },
+  { id: 2, name: 'Ahmed Ali', email: 'ahmed@example.com', role: 'User', type: 'عميل مهتم', image: '/images/hero-3.webp' },
+  { id: 3, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل حقيقي', image: '/images/hero-4.webp' },
+  { id: 4, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل مهتم', image: '/images/hero-2.webp' },
+  { id: 5, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل حقيقي', image: '/images/hero-1.png' },
+  { id: 6, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل مهتم', image: '/images/hero-4.webp' },
+]);
 
   const [addOpen, setAddOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
@@ -25,12 +25,13 @@ export default function UsersPage() {
   const [selectedUser, setSelectedUser] = useState<any>(null);
 
   const columns = [
-    { key: 'id', header: t('id'), align: 'center' },
-    { key: 'name', header: t('name'), align: 'left' },
-    { key: 'email', header: t('email'), align: 'left' },
-    { key: 'role', header: t('role'), align: 'center' },
-    { key: 'type', header: t('type'), align: 'center' }
-  ];
+  { key: 'id', header: t('id'), align: 'center' },
+  { key: 'image', header: t('image'), align: 'center', render: (value: string) => <img src={value} alt="user" className="w-10 h-10 rounded-full mx-auto" /> },
+  { key: 'name', header: t('name'), align: 'left' },
+  { key: 'email', header: t('email'), align: 'left' },
+  { key: 'role', header: t('role'), align: 'center' },
+  { key: 'type', header: t('type'), align: 'center' }
+];
 
   const handleAdd = (user: any) => setUsers(prev => [...prev, user]);
   const handleEdit = (user: any) => setUsers(prev => prev.map(u => u.id === user.id ? user : u));

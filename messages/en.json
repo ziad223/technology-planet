@@ -298,6 +298,7 @@
     "save": "Save",
     "emptyTable": "No admins found",
     "table": {
+    "avatar" : "Images",
           "title": "Clients",
     "id": "ID",
     "name": "Name",
@@ -319,6 +320,7 @@
 "edit": "Edit",
 "delete": "Delete",
 "UsersPage": {
+    "image" :"Image",
     "cancel": "Cancel",
     "title": "Users",
     "id": "ID",

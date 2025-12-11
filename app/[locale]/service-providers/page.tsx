@@ -9,10 +9,12 @@ export const metadata = {
 export default async function AdminsPage() {
   const t = await getTranslations('Admins');
 
-  // بيانات مؤقتة
+  // بيانات الأدمينز مع صور
   const admins: Admin[] = [
-    { id: '1', name: 'Ziad Abdalla', email: 'ziad@example.com', group: 'Super Admin' },
-    { id: '2', name: 'Ahmed Ali', email: 'ahmed@example.com', group: 'Editor' }
+    { id: '1', name: 'Ziad Abdalla', email: 'ziad@example.com', group: 'Super Admin', avatar: '/images/hero-1.png' },
+    { id: '2', name: 'Ahmed Ali', email: 'ahmed@example.com', group: 'Editor', avatar: '/images/hero-2.webp' },
+    { id: '3', name: 'Sara Mohamed', email: 'sara@example.com', group: 'Editor', avatar: '/images/hero-3.webp' },
+    { id: '4', name: 'Omar Hassan', email: 'omar@example.com', group: 'Admin', avatar: '/images/hero-4.webp' },
   ];
 
   return (

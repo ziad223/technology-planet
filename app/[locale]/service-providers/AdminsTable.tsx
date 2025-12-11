@@ -7,12 +7,14 @@ import AddAdminButton from './AddAdminButton';
 import EditAdminModal from './EditAdminModal';
 import DeleteAdminModal from './DeleteAdminModal';
 import { Trash2 , Edit } from 'lucide-react';
+import Image from 'next/image';
 
 export interface Admin {
   id: string;
   name: string;
   email: string;
   group: string;
+  avatar: string;
 }
 
 interface AdminsTableProps {
@@ -22,14 +24,10 @@ interface AdminsTableProps {
 export default function AdminsTable({ data }: AdminsTableProps) {
   const t = useTranslations('Admins');
 
-  // الحالة المحلية للـ admins (نأخذها من الـ props كبداية)
-  const [admins, setAdmins] = useState<Admin[]>(data || []);
-
-  // مودالات
+  const [admins, setAdmins] = useState<Admin[]>(data);
   const [editing, setEditing] = useState<Admin | null>(null);
   const [deleting, setDeleting] = useState<Admin | null>(null);
 
-  // دوال التعديل والحذف
   const handleSaveEdit = (updated: Admin) => {
     setAdmins(prev => prev.map(a => (a.id === updated.id ? updated : a)));
     setEditing(null);
@@ -40,9 +38,23 @@ export default function AdminsTable({ data }: AdminsTableProps) {
     setDeleting(null);
   };
 
-  // عمود الكنترول: يعطي أيقونتين
   const columns: Column<Admin>[] = [
     { key: 'id', header: t('table.id'), align: 'center' },
+    
+    {
+      key: 'avatar',
+      header: t('table.avatar'),
+      align: 'center',
+      render: (row: Admin) => (
+        <Image 
+          src = '/images/hero-2.webp'
+          width={40}
+          height={40}
+          alt={row.name} 
+          className="w-10 h-10 rounded-full object-cover border border-gray-200 mx-auto" 
+        />
+      ),
+    },
     { key: 'name', header: t('table.name'), align: 'left' },
     { key: 'email', header: t('table.email'), align: 'left' },
     { key: 'group', header: t('table.group'), align: 'center' },
@@ -80,17 +92,15 @@ export default function AdminsTable({ data }: AdminsTableProps) {
 
       <DataTable columns={columns} data={admins} emptyMessage={t('emptyTable')} />
 
-      {/* مودال التعديل */}
-{editing && (
-  <EditAdminModal
-    open={!!editing}
-    admin={editing}
-    onClose={() => setEditing(null)}
-    onSave={handleSaveEdit}
-  />
-)}
+      {editing && (
+        <EditAdminModal
+          open={!!editing}
+          admin={editing}
+          onClose={() => setEditing(null)}
+          onSave={handleSaveEdit}
+        />
+      )}
 
-      {/* مودال الحذف */}
       {deleting && (
         <DeleteAdminModal
           open={!!deleting}
