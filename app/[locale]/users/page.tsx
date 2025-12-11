@@ -14,9 +14,9 @@ export default function UsersPage() {
     { id: 1, name: 'Ziad Abdalla', email: 'ziad@example.com', role: 'Admin', type: 'عميل محتمل' },
     { id: 2, name: 'Ahmed Ali', email: 'ahmed@example.com', role: 'User', type: 'عميل مهتم' },
     { id: 3, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل حقيقي' },
-    { id: 3, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل مهتم' },
-    { id: 3, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل حقيقي' },
-    { id: 3, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل مهتم' },
+    { id: 4, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل مهتم' },
+    { id: 5, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل حقيقي' },
+    { id: 6, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل مهتم' },
   ]);
 
   const [addOpen, setAddOpen] = useState(false);
