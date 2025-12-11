@@ -537,6 +537,40 @@
     "cancel": "Cancel",
     "confirm": "Delete"
   }
+  },
+  "SupportPage": {
+    "title": "Support Tickets",
+    "noData": "No data available",
+    "columns": {
+      "number": "Number",
+      "client": "Client",
+      "address": "Address",
+      "category": "Category",
+      "content": "Content",
+      "status": "Status",
+      "comments": "Comments",
+      "actions": "Actions"
+    },
+    "actions": {
+      "addTicket": "Add Ticket",
+      "addComment": "Add Comment",
+      "editStatus": "Edit Status",
+      "delete": "Delete",
+      "add": "Add",
+      "cancel": "Cancel"
+    },
+    "fields": {
+      "client": "Client Name",
+      "address": "Address",
+      "category": "Category",
+      "content": "Content"
+    },
+    "messages": {
+      "ticketAdded": "Ticket added successfully",
+      "commentAdded": "Comment added successfully",
+      "statusUpdated": "Status updated successfully",
+      "ticketDeleted": "Ticket deleted successfully"
+    }
   }
 
 }

@@ -49,7 +49,7 @@ export default function CustomSelect({
            <SelectTrigger
   className={`block    w-full bg-transparent border ${
     error ? "border-red-500" : "border-gray-300"
-  } h-[65px] rounded-[10px] flex items-center px-5`}
+  } h-[45px] rounded-[10px] flex items-center px-5`}
 >
   <SelectValue placeholder={placeholder || "اختر..."} />
 </SelectTrigger>

@@ -182,6 +182,12 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
   // روابط الإعدادات الداخلية
   const settingsLinks = [
     { 
+      id: "settings", 
+      label: t("settings"), 
+      icon: <Settings size={18} />, 
+      href: `/${locale}/settings`
+    },
+        { 
       id: "privacyPolicy", 
       label: t("privacyPolicy"), 
       icon: <Shield size={18} />, 
@@ -193,12 +199,12 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
       icon: <FileTextIcon size={18} />, 
       href: `/${locale}/policy-usage`
     },
-    { 
-      id: "moderators", 
-      label: t("moderators"), 
-      icon: <Users size={18} />, 
-      href: `/${locale}/moderators`
-    }
+    // { 
+    //   id: "moderators", 
+    //   label: t("moderators"), 
+    //   icon: <Users size={18} />, 
+    //   href: `/${locale}/moderators`
+    // }
   ];
 
   // روابط المستخدمين الداخلية
@@ -298,9 +304,7 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
                 return (
                   <>
                     <div key={item.id} className="pt-4 mt-4 border-t border-gray-700">
-                      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">
-                        {item.label}
-                      </h3>
+                     
                     </div>
                     
                     {/* Settings Accordion Button */}
@@ -389,9 +393,7 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
               // Other dividers
               return (
                 <div key={item.id} className="pt-4 mt-4 border-t border-gray-700">
-                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">
-                    {item.label}
-                  </h3>
+                  
                 </div>
               );
             }

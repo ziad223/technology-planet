@@ -67,7 +67,6 @@ export default function SettingsForm() {
     <form onSubmit={handleSubmit(onSubmit)} className=" mx-auto p-4 bg-white shadow-md rounded-lg space-y-6">
       <h2 className="text-xl font-bold">{t('basicData')}</h2>
 
-      {/* Name, Admin, URL, Tax */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         <div>
           <label className="block mb-2 font-medium">{t('nameSite')}</label>
@@ -106,7 +105,7 @@ export default function SettingsForm() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-end">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 items-end">
         <CustomSelect control={control} name="activateTax" label={t('activateTax')} options={statusOptions} />
         <CustomSelect control={control} name="siteStatus" label={t('siteStatus')} options={statusOptions} />
       </div>

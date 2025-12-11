@@ -546,6 +546,40 @@
     "cancel": "إلغاء",
     "confirm": "حذف"
   }
+  },
+   "SupportPage": {
+    "title": "تذاكر الدعم الفني",
+    "noData": "لا توجد بيانات",
+    "columns": {
+      "number": "الرقم",
+      "client": "العميل",
+      "address": "العنوان",
+      "category": "الفئة",
+      "content": "المحتوى",
+      "status": "الحالة",
+      "comments": "التعليقات",
+      "actions": "الإجراءات"
+    },
+    "actions": {
+      "addTicket": "إضافة تذكرة",
+      "addComment": "إضافة تعليق",
+      "editStatus": "تعديل الحالة",
+      "delete": "حذف",
+      "add": "إضافة",
+      "cancel": "إلغاء"
+    },
+    "fields": {
+      "client": "اسم العميل",
+      "address": "العنوان",
+      "category": "الفئة",
+      "content": "المحتوى"
+    },
+    "messages": {
+      "ticketAdded": "تم إضافة التذكرة بنجاح",
+      "commentAdded": "تم إضافة التعليق بنجاح",
+      "statusUpdated": "تم تحديث الحالة بنجاح",
+      "ticketDeleted": "تم حذف التذكرة بنجاح"
+    }
   }
 
 }
