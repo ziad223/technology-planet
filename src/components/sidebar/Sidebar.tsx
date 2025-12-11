@@ -28,7 +28,12 @@ import {
   MapPin,
   FileTextIcon,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Layers,
+  UserPlus,
+  Briefcase,
+  UserCheck,
+  UserCog
 } from "lucide-react";
 
 interface DashboardSidebarProps {
@@ -43,6 +48,7 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [usersOpen, setUsersOpen] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -100,12 +106,12 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
       type: "divider"
     },
     
-    // Users
+    // Site Sections
     { 
-      id: "users", 
-      label: t("users"), 
-      icon: <User size={20} />, 
-      href: `/${locale}/users`,
+      id: "siteSections", 
+      label: t("siteSections"), 
+      icon: <Layers size={20} />, 
+      href: `/${locale}/categories`,
       type: "link"
     },
     
@@ -195,6 +201,28 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
     }
   ];
 
+  // روابط المستخدمين الداخلية
+  const usersLinks = [
+    { 
+      id: "customers", 
+      label: t("customers"), 
+      icon: <User size={18} />, 
+      href: `/${locale}/users`
+    },
+    { 
+      id: "serviceProviders", 
+      label: t("serviceProviders"), 
+      icon: <Briefcase size={18} />, 
+      href: `/${locale}/service-providers`
+    },
+    // { 
+    //   id: "admins", 
+    //   label: t("admins"), 
+    //   icon: <UserCog size={18} />, 
+    //   href: `/${locale}/moderators`
+    // }
+  ];
+
   const isActive = (href: string, exact = false) => {
     if (exact) {
       return pathname === href;
@@ -210,6 +238,7 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
 
   // التحقق إذا كان أي رابط في الإعدادات نشط
   const isSettingsActive = settingsLinks.some(link => isActive(link.href));
+  const isUsersActive = usersLinks.some(link => isActive(link.href));
 
   return (
     <>
@@ -313,6 +342,46 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
                         ))}
                       </div>
                     )}
+
+                    {/* Users Accordion Button */}
+                    <button
+                      onClick={() => setUsersOpen(!usersOpen)}
+                      className={`
+                        w-full flex items-center justify-between p-3 rounded-lg 
+                        transition-all text-sm mt-2
+                        ${isUsersActive || usersOpen ? "bg-blue-900/30 text-white" : "hover:bg-gray-700 text-gray-300"}
+                      `}
+                    >
+                      <div className="flex items-center gap-3">
+                        <Users size={20} />
+                        <span>{t("users")}</span>
+                      </div>
+                      <div className={`transition-transform duration-200 ${usersOpen ? "rotate-180" : ""}`}>
+                        <ChevronDown size={16} />
+                      </div>
+                    </button>
+                    
+                    {/* Users Submenu */}
+                    {usersOpen && (
+                      <div className="ml-8 mt-2 space-y-1 pl-3 border-l-2 border-blue-500">
+                        {usersLinks.map((subItem) => (
+                          <Link
+                            key={subItem.id}
+                            href={subItem.href}
+                            className={`
+                              flex items-center gap-3 p-2 text-sm rounded-lg transition-all
+                              ${isActive(subItem.href) 
+                                ? "bg-blue-600 text-white" 
+                                : "hover:bg-gray-700 text-gray-300"
+                              }
+                            `}
+                          >
+                            <span className="flex-shrink-0">{subItem.icon}</span>
+                            <span className="truncate">{subItem.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </>
                 );
               }
@@ -327,7 +396,9 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
               );
             }
             
-            // Regular link
+            // Regular link - Skip users link since it's now in accordion
+            if (item.id === "users") return null;
+            
             return (
               <Link
                 key={item.id}
@@ -348,19 +419,33 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
             );
           })}
           
-          {/* Collapsed version of Settings - Just show icon */}
+          {/* Collapsed version - Just show icons */}
           {collapsed && (
-            <button
-              onClick={() => setSettingsOpen(!settingsOpen)}
-              className={`
-                w-full flex items-center justify-center p-3 text-sm rounded-lg 
-                transition-all mt-4
-                ${isSettingsActive || settingsOpen ? "bg-blue-900/30 text-white" : "hover:bg-gray-700 text-gray-300"}
-              `}
-              title={t("settings")}
-            >
-              <Settings size={20} />
-            </button>
+            <>
+              <button
+                onClick={() => setSettingsOpen(!settingsOpen)}
+                className={`
+                  w-full flex items-center justify-center p-3 text-sm rounded-lg 
+                  transition-all mt-4
+                  ${isSettingsActive || settingsOpen ? "bg-blue-900/30 text-white" : "hover:bg-gray-700 text-gray-300"}
+                `}
+                title={t("settings")}
+              >
+                <Settings size={20} />
+              </button>
+              
+              <button
+                onClick={() => setUsersOpen(!usersOpen)}
+                className={`
+                  w-full flex items-center justify-center p-3 text-sm rounded-lg 
+                  transition-all mt-2
+                  ${isUsersActive || usersOpen ? "bg-blue-900/30 text-white" : "hover:bg-gray-700 text-gray-300"}
+                `}
+                title={t("users")}
+              >
+                <Users size={20} />
+              </button>
+            </>
           )}
         </nav>
         

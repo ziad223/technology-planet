@@ -6,6 +6,9 @@
   },
 
   "Dashboard": {
+     "allUsers": "All Users",
+    "customers": "Customers",
+    "admins": "Admins",
     "cities": "Cities",
   "sliders": "Sliders",
   "pages": "Pages",
@@ -57,7 +60,37 @@
     "userProfile": "User Profile",
     "role": "Role"
   },
+"Categories": {
+    "title": "Categories",
 
+    "table": {
+      "id": "ID",
+      "name": "Name",
+      "actions": "Actions",
+      "addButton": "Add Category"
+    },
+
+    "addModal": {
+      "title": "Add Category",
+      "placeholder": "Category name",
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+
+    "editModal": {
+      "title": "Edit Category",
+      "placeholder": "Category name",
+      "cancel": "Cancel",
+      "update": "Update"
+    },
+
+    "deleteModal": {
+      "title": "Delete Category",
+      "message": "Are you sure you want to delete",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    }
+  },
   "Navbar": {
     "search": "Search",
     "notifications": "Notifications",
@@ -259,8 +292,8 @@
     "title": "Usage Policy"
   },
    "Admins": {
-    "admins": "Admins",
-    "addAdmin": "Add Admin",
+    "admins": "Service Providers",
+    "addAdmin": "Add Service Provider",
     "cancel": "Cancel",
     "save": "Save",
     "emptyTable": "No admins found",
@@ -474,6 +507,36 @@
       "inProgress": "In Progress",
       "closed": "Closed"
     }
+  },
+  "CattegoriesPage" : {
+    "title": "Categories",
+  "id": "ID",
+  "name": "Name",
+  "description": "Description",
+  "add": "Add Category",
+  "edit": "Edit",
+  "delete": "Delete",
+  "noData": "No categories found",
+  "addModal": {
+    "title": "Add New Category",
+    "name": "Name",
+    "description": "Description",
+    "cancel": "Cancel",
+    "submit": "Add Category"
+  },
+  "editModal": {
+    "title": "Edit Category",
+    "name": "Name",
+    "description": "Description",
+    "cancel": "Cancel",
+    "submit": "Save Changes"
+  },
+  "deleteModal": {
+    "title": "Delete Category",
+    "message": "Are you sure you want to delete this category?",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  }
   }
 
 }

@@ -4,8 +4,41 @@
     "pageNotFoundDesc": "عذرًا، الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
     "backHome": "الذهاب الي الصفحة الرئيسية"
   },
+ "Categories": {
+    "title": "الأقسام",
 
+    "table": {
+      "id": "الرقم",
+      "name": "الاسم",
+      "actions": "الإجراءات",
+      "addButton": "إضافة قسم"
+    },
+
+    "addModal": {
+      "title": "إضافة قسم",
+      "placeholder": "اسم القسم",
+      "cancel": "إلغاء",
+      "save": "حفظ"
+    },
+
+    "editModal": {
+      "title": "تعديل القسم",
+      "placeholder": "اسم القسم",
+      "cancel": "إلغاء",
+      "update": "تحديث"
+    },
+
+    "deleteModal": {
+      "title": "حذف القسم",
+      "message": "هل أنت متأكد أنك تريد حذف",
+      "cancel": "إلغاء",
+      "delete": "حذف"
+    }
+  },
   "Dashboard": {
+  "all": "جميع المستخدمين",
+  "customers": "العملاء",
+  "admins": "مزودي الخدمة ",
   "clientsAndProviders": "العملاء ومزودو الخدمة",
   "viewAllArticles": "عرض كل المقالات",
   "groups": "المجموعات",
@@ -275,8 +308,8 @@
     "title": " سياسة الاستخدام"
   },
   "Admins": {
-    "admins": "المشرفين",
-    "addAdmin": "إضافة مشرف",
+    "admins": "مزودي الخدمة",
+    "addAdmin": "إضافة مزود خدمة  ",
     "cancel": "إلغاء",
     "save": "حفظ",
     "emptyTable": "لا يوجد مشرفين",
@@ -483,6 +516,36 @@
       "inProgress": "قيد المعالجة",
       "closed": "مغلقة"
     }
+  },
+  "CategoriesPage" : {
+     "title": "الأقسام",
+  "id": "المعرف",
+  "name": "الاسم",
+  "description": "الوصف",
+  "add": "إضافة قسم",
+  "edit": "تعديل",
+  "delete": "حذف",
+  "noData": "لا توجد أقسام",
+  "addModal": {
+    "title": "إضافة قسم جديد",
+    "name": "الاسم",
+    "description": "الوصف",
+    "cancel": "إلغاء",
+    "submit": "إضافة القسم"
+  },
+  "editModal": {
+    "title": "تعديل القسم",
+    "name": "الاسم",
+    "description": "الوصف",
+    "cancel": "إلغاء",
+    "submit": "حفظ التعديلات"
+  },
+  "deleteModal": {
+    "title": "حذف القسم",
+    "message": "هل أنت متأكد أنك تريد حذف هذا القسم؟",
+    "cancel": "إلغاء",
+    "confirm": "حذف"
+  }
   }
 
 }
