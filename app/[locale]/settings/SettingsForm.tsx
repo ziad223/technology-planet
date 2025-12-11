@@ -67,7 +67,7 @@ export default function SettingsForm() {
     <form onSubmit={handleSubmit(onSubmit)} className=" mx-auto p-4 bg-white shadow-md rounded-lg space-y-6">
       <h2 className="text-xl font-bold">{t('basicData')}</h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
         <div>
           <label className="block mb-2 font-medium">{t('nameSite')}</label>
           <input {...register('nameSite')} className="w-full border rounded px-4 py-2 focus:outline-none focus:border-blue-500" />
@@ -84,10 +84,7 @@ export default function SettingsForm() {
           <label className="block mb-2 font-medium">{t('taxNumber')}</label>
           <input {...register('taxNumber')} className="w-full border rounded px-4 py-2 focus:outline-none focus:border-blue-500" />
         </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-        <div>
+         <div>
           <label className="block mb-2 font-medium">{t('buildingNumber')}</label>
           <input {...register('buildingNumber')} className="w-full border rounded px-4 py-2 focus:outline-none focus:border-blue-500" />
         </div>
@@ -103,21 +100,25 @@ export default function SettingsForm() {
           <label className="block mb-2 font-medium">{t('email')}</label>
           <input {...register('email')} className="w-full border rounded px-4 py-2 focus:outline-none focus:border-blue-500" />
         </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 items-end">
-        <CustomSelect control={control} name="activateTax" label={t('activateTax')} options={statusOptions} />
+               <div className='col-span-2'>
+<CustomSelect control={control} name="activateTax" label={t('activateTax')} options={statusOptions} />
+               </div>
+               <div className='col-span-2'>
         <CustomSelect control={control} name="siteStatus" label={t('siteStatus')} options={statusOptions} />
       </div>
+      </div>
 
-      {/* Site Deactivation Message */}
+      
+
+     
+
       <div>
         <label className="block mb-2 font-medium">{t('siteDeactivationMsg')}</label>
         <textarea {...register('siteDeactivationMsg')} className="w-full border rounded px-4 py-2 focus:outline-none focus:border-blue-500" rows={3} />
       </div>
 
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <div>
           <label className="block mb-2 font-medium">{t('whatsapp')}</label>
           <input {...register('whatsapp')} className="w-full border rounded px-4 py-2 focus:outline-none focus:border-blue-500" />
