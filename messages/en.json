@@ -298,7 +298,7 @@
     "save": "Save",
     "emptyTable": "No admins found",
     "table": {
-          "title": "Users",
+          "title": "Clients",
     "id": "ID",
     "name": "Name",
     "email": "Email",
@@ -328,7 +328,13 @@
     "add": "Add User",
     "edit": "Edit",
     "delete": "Delete",
-    "noData": "No data available"
+    "noData": "No data",
+    "type": "Client Type",
+    "totalClients": "Total Clients",
+    "potentialClients": "Potential Clients",
+    "interestedClients": "Interested Clients",
+    "uninterestedClients": "Uninterested Clients",
+    "realClients": "Real Clients"
   },
   "ArticlesPage": {
     "titlee": "Articles",

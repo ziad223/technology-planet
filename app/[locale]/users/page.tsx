@@ -11,9 +11,12 @@ export default function UsersPage() {
   const t = useTranslations('UsersPage');
 
   const [users, setUsers] = useState([
-    { id: 1, name: 'Ziad Abdalla', email: 'ziad@example.com', role: 'Admin' },
-    { id: 2, name: 'Ahmed Ali', email: 'ahmed@example.com', role: 'User' },
-    { id: 3, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User' },
+    { id: 1, name: 'Ziad Abdalla', email: 'ziad@example.com', role: 'Admin', type: 'عميل محتمل' },
+    { id: 2, name: 'Ahmed Ali', email: 'ahmed@example.com', role: 'User', type: 'عميل مهتم' },
+    { id: 3, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل حقيقي' },
+    { id: 3, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل مهتم' },
+    { id: 3, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل حقيقي' },
+    { id: 3, name: 'Sara Mohamed', email: 'sara@example.com', role: 'User', type: 'عميل مهتم' },
   ]);
 
   const [addOpen, setAddOpen] = useState(false);
@@ -26,15 +29,34 @@ export default function UsersPage() {
     { key: 'name', header: t('name'), align: 'left' },
     { key: 'email', header: t('email'), align: 'left' },
     { key: 'role', header: t('role'), align: 'center' },
+    { key: 'type', header: t('type'), align: 'center' }
   ];
 
   const handleAdd = (user: any) => setUsers(prev => [...prev, user]);
   const handleEdit = (user: any) => setUsers(prev => prev.map(u => u.id === user.id ? user : u));
   const handleDelete = (user: any) => setUsers(prev => prev.filter(u => u.id !== user.id));
 
+  // احصائيات العملاء حسب النوع
+  const totalClients = users.length;
+  const potentialClients = users.filter(u => u.type === 'عميل محتمل').length;
+  const interestedClients = users.filter(u => u.type === 'عميل مهتم').length;
+  const uninterestedClients = users.filter(u => u.type === 'عميل غير مهتم').length;
+  const realClients = users.filter(u => u.type === 'عميل حقيقي').length;
+
   return (
-    <div className="p-4 md:p-6">
-      <div className="flex justify-between mb-4">
+    <div className="p-4 md:p-6 space-y-4">
+
+      {/* إحصائيات العملاء */}
+      <div className="flex flex-wrap gap-3">
+        <div className="px-4 py-2 bg-gray-200 rounded">{t('totalClients')}: {totalClients}</div>
+        <div className="px-4 py-2 bg-yellow-200 rounded">{t('potentialClients')}: {potentialClients}</div>
+        <div className="px-4 py-2 bg-blue-200 rounded">{t('interestedClients')}: {interestedClients}</div>
+        <div className="px-4 py-2 bg-red-200 rounded">{t('uninterestedClients')}: {uninterestedClients}</div>
+        <div className="px-4 py-2 bg-green-200 rounded">{t('realClients')}: {realClients}</div>
+      </div>
+
+      {/* عنوان وزرار إضافة */}
+      <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">{t('title')}</h1>
         <button onClick={() => setAddOpen(true)} className="px-4 py-2 bg-blue-600 text-white rounded">{t('add')}</button>
       </div>
@@ -43,7 +65,7 @@ export default function UsersPage() {
         columns={columns}
         data={users}
         actions={(user) => (
-          <div className="flex justify-center gap-">
+          <div className="flex justify-center gap-2">
             <button onClick={() => { setSelectedUser(user); setEditOpen(true); }} className="p-2 rounded  text-green-600"><Edit/></button>
             <button onClick={() => { setSelectedUser(user); setDeleteOpen(true); }} className="p-2 rounded  text-red-600"><Trash2/></button>
           </div>

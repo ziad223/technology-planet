@@ -322,7 +322,7 @@
     }
   },
   "UsersPage": {
-      "title": "المستخدمين",
+      "title": "العملاء",
     "id": "ID",
     "name": "الاسم",
     "email": "البريد الإلكتروني",
@@ -333,7 +333,13 @@
     "save": "حفظ",
     "cancel": "إلغاء",
     "noData": "لا توجد بيانات",
-    "deleteMessage": "هل أنت متأكد من حذف المستخدم {name}؟"
+    "deleteMessage": "هل أنت متأكد من حذف المستخدم {name}؟",
+    "type": "نوع العميل",
+    "totalClients": "عدد العملاء",
+    "potentialClients": "عملاء محتملين",
+    "interestedClients": "عملاء مهتمين",
+    "uninterestedClients": "عملاء غير مهتمين",
+    "realClients": "عملاء حقيقيون"
   },
 "editAdmin": "تعديل المشرف",
 "deleteAdmin": "حذف المشرف",
