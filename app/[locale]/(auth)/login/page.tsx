@@ -1,141 +1,116 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast, ToastContainer } from "react-toastify";
-import { useRouter } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
-import Image from "next/image";
-import "react-toastify/dist/ReactToastify.css";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useLocale, useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useMutation } from '@tanstack/react-query';
+import apiServiceCall from '@/lib/apiServiceCall';
+import { LuUserRound } from "react-icons/lu";
+import { AiOutlineEye } from "react-icons/ai";
+import Link from 'next/link';
+
+interface LoginFormValues {
+  email: string;
+  password: string;
+}
 
 export default function LoginPage() {
-  const [showPassword, setShowPassword] = useState(false);
-  const { register, handleSubmit, formState: { errors } } = useForm();
-
+  const t = useTranslations('auth.login');
   const router = useRouter();
-  const locale = useLocale();
-  const t = useTranslations("auth.login");
+  const locale = useLocale()
 
-  const onSubmit = (data) => {
-    const { email, password } = data;
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormValues>();
 
-    if (email === "admin@admin.com" && password === "123456") {
-      // 👉 تخزين الدخول في Cookie
-      document.cookie = "loggedIn=true; path=/";
+  const loginMutation = useMutation({
+    mutationFn: (data: LoginFormValues) => apiServiceCall({
+      url: 'login',
+      method: 'POST',
+      body: data,
+    }),
+    onSuccess: (data) => {
+      // حفظ التوكن في localStorage
+    document.cookie = `loggedIn=true; path=/; max-age=${60*60*24}`; // يوم واحد
 
-      toast.success(t("success"));
-
+localStorage.setItem('user', JSON.stringify(data.data));
+localStorage.setItem('role', JSON.stringify(data.data.role));
+localStorage.setItem('permissions', JSON.stringify(data.permissions));
+localStorage.setItem('token', data.token);
+  toast.success(t('success'));
       setTimeout(() => {
-       window.location.href = (`/${locale}`);
-      }, 1200);
-    } else {
-      toast.error(t("invalid"));
+        window.location.href = `/${locale}`;
+      }, 800);
+    },
+    onError: (error: any) => {
+      toast.error(error?.message || t('invalid'));
     }
+  });
+
+  const onSubmit = (formData: LoginFormValues) => {
+    loginMutation.mutate(formData);
   };
 
   return (
-    <div className="flex flex-col-reverse lg:flex-row gap-10 min-h-screen">
-      <ToastContainer position="top-right" autoClose={1500} />
+    <div className="relative min-h-screen flex items-center justify-center bg-[url(/images/login-bg.jpeg)] bg-no-repeat bg-cover after:content-[''] after:absolute after:inset-0 after:w-full after:h-full after:-z-10 after:bg-[rgba(114,114,114,0.2)] after:bg-gradient-to-br after:from-[rgba(3,1,76,0.36)] after:to-[rgba(28,28,28,0.36)]">
+      <ToastContainer position="top-right" autoClose={2000} />
 
-      {/* LEFT FORM SIDE */}
-      <div className="flex flex-col text-center lg:text-start w-full lg:w-1/2 px-6 lg:px-12 py-10">
-        <Image
-          width={200}
-          height={200}
-          src="/images/logo7.png"
-          alt="logo"
-          className="w-[120px] h-[120px] lg:w-[350px] lg:h-[200px]"
-        />
+      <div className="container flex flex-col gap-4 items-center justify-center max-w-screen-xl mx-4 px-4">
+        <div className="w-[550px] max-w-full min-h-[500px] bg-[#fff] rounded-[15px] shadow-2xl p-10">
+          <h2 className="text-xl font-bold mb-4 text-center text-[#3E3E3E]">
+            {t('title')}
+          </h2>
 
-        <h2 className="text-xl lg:text-[24px] font-semibold mt-5">{t("title")}</h2>
-        <h3 className="mt-1 text-gray-500 text-sm lg:text-base">
-          {t("subtitle")}
-        </h3>
+          <p className='text-center text-xs font-normal opacity-50 mb-8'>
+            {t('Welcome')}
+          </p>
 
-        <form className="mt-8 w-full max-w-md" onSubmit={handleSubmit(onSubmit)}>
-
-          {/* EMAIL */}
-          <div className="flex flex-col gap-3">
-            <label className="font-semibold text-sm lg:text-base text-right">{t("email")}</label>
-            <div className="relative w-full">
+          <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
+            <div className="inp-grop flex items-center gap-1 border border-[#03014c33] rounded-md px-[0.5rem]"> 
+              <LuUserRound fontSize={23} className='text-gray-500' />
               <input
                 type="email"
-                {...register("email", { required: t("emailRequired") })}
-                className="h-[50px] rounded-lg border border-gray-300 bg-transparent outline-none px-5 w-full"
-                placeholder={t("emailPlaceholder")}
-              />
-              <Image
-                width={35}
-                height={35}
-                src="/images/login-email.svg"
-                alt="email-icon"
-                className="absolute left-3 top-1/2 -translate-y-1/2 opacity-70"
+                placeholder={t('email')}
+                {...register('email', { required: true })}
+                className="w-full h-full py-[0.9rem] text-slate-950 font-normal placeholder:font-normal placeholder-gray-500 outline-none placeholder:transition-all duration-500 focus:placeholder-transparent"
               />
             </div>
-            {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
-          </div>
+            {errors.email && <p className="text-red-500 text-sm">{t('emailRequired')}</p>}
 
-          {/* PASSWORD */}
-          <div className="flex flex-col gap-3 mt-5">
-            <label className="font-semibold text-sm lg:text-base text-right">{t("password")}</label>
-            <div className="relative w-full">
+            <div className="inp-grop flex items-center gap-1 border border-[#03014c33] rounded-md px-[0.5rem]"> 
+              <AiOutlineEye fontSize={23} className='text-gray-500' />
               <input
-                type={showPassword ? "text" : "password"}
-                {...register("password", { required: t("passwordRequired") })}
-                className="h-[50px] rounded-lg border border-gray-300 bg-transparent outline-none px-5 w-full"
-                placeholder={t("passwordPlaceholder")}
-              />
-
-              <Image
-                width={35}
-                height={35}
-                src="/images/login-eye.svg"
-                alt="eye-icon"
-                className="absolute left-3 top-1/2 -translate-y-1/2 opacity-70 cursor-pointer"
-                onClick={() => setShowPassword(!showPassword)}
+                type="password"
+                placeholder={t('password')}
+                {...register('password', { required: true })}
+                className="w-full h-full py-[0.9rem] text-slate-950 font-normal placeholder:font-normal placeholder-gray-500 outline-none placeholder:transition-all duration-500 focus:placeholder-transparent"
               />
             </div>
-            {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
-          </div>
+            {errors.password && <p className="text-red-500 text-sm">{t('passwordRequired')}</p>}
 
-          {/* SUBMIT BUTTON */}
-          <button
-            type="submit"
-            className="mt-6 w-full bg-[#09adce] text-white py-3 rounded-lg font-semibold hover:bg-[#0894ad] transition"
-          >
-            {t("submit")}
-          </button>
-        </form>
-      </div>
+            <div className="flex items-center justify-between">
+              <label className="flex items-center gap-2 text-[#3E3E3E] text-sm">
+                <input type="checkbox" className="accent-blue-500" />
+                {t('remember')}
+              </label>
+            </div>
 
-      {/* RIGHT IMAGE SIDE */}
-      <div className="relative h-[300px] lg:h-screen w-full lg:w-1/2">
-        <Image
-          fill
-          src="/images/login-bg.jpeg"
-          alt="bg"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-[#09adce]/40"></div>
+            <button
+              type="submit"
+              className="w-full h-[65px] bg-[#3E3E3E] text-white text-base rounded-lg font-semibold hover:bg-[#25456d] hover:shadow-lg transition"
+              disabled={loginMutation.isLoading}
+            >
+              {loginMutation.isLoading ? t('loading') : t('submit')}
+            </button>
+          </form>
 
-        <div className="absolute inset-0 text-white p-6 lg:p-20 flex flex-col justify-center items-center lg:items-end text-center lg:text-right">
-          <Image
-            width={150}
-            height={150}
-            src="/images/login-logo.jfif"
-            alt="loginLogo"
-            className="w-[120px] h-[100px] lg:w-[160px] lg:h-[130px]"
-          />
-
-          <div className="mt-5">
-            <h1 className="text-xl lg:text-[40px] font-bold leading-[35px] lg:leading-[55px]">
-              برنامج ادارة وتأجير قاعات الافراح
-            </h1>
-            <h2 className="text-lg lg:text-[30px] font-semibold leading-[28px] lg:leading-[45px]">
-              Wedding hall management and rental program
-            </h2>
-            <p className="text-base lg:text-xl mt-6 lg:mt-20">شركة كواكب التقنية</p>
-          </div>
+          <p className="mt-8 text-center text-gray-500">
+            {t('noAccount')}{' '}
+            <Link href="/register" className="text-[#25456d] font-medium hover:underline">
+              {t('register')}
+            </Link>
+          </p>
         </div>
       </div>
     </div>

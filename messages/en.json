@@ -45,11 +45,11 @@
     "privacyPolicy": "Privacy Policy",
     "usagePolicy": "Usage Policy",
     "moderators": "Moderators",
-    "siteSections": "Site Sections",
+    "siteSections": "Categories",
     "users": "Users",
     "articles": "Articles",
     "productsList": "Products",
-    "siteServices": "Site Services",
+    "siteServices": "Categories",
     "technicalSupport": "Technical Support",
     "library": "Library",
     "messages": "Messages",
@@ -62,7 +62,14 @@
   },
 "Categories": {
     "title": "Categories",
+    "add": "Add Category",
+    "edit": "Edit",
+    "delete": "Delete",
+    "noData": "No categories found",
 
+    "id": "ID",
+    "name": "Name",
+    "description": "Description",
     "table": {
       "id": "ID",
       "name": "Name",
@@ -74,7 +81,14 @@
       "title": "Add Category",
       "placeholder": "Category name",
       "cancel": "Cancel",
-      "save": "Save"
+      "save": "Save",
+      "name": "Category Name",
+      "active": "Active",
+      "upload": "Click to upload image",
+      "submit": "Save",
+      "saving": "Saving...",
+      "success": "Category added successfully",
+      "errorName": "Please enter a category name"
     },
 
     "editModal": {
@@ -258,6 +272,14 @@
   },
 
   "settingsPage": {
+
+    "saving": "Saving...",
+    "loading": "Loading...",
+    "clickToUploadLogo": "Click to upload logo",
+    "clickToUploadIcon": "Click to upload icon",
+    "saveSuccess": "Settings updated successfully",
+    "saveError": "Failed to save settings",
+    "fetchError": "Failed to load settings",
     "title": "Settings",
     "basicData": "Basic Data",
     "nameSite": "Site Name",
@@ -286,10 +308,14 @@
 
   },
   "privacyPage": {
-    "title": "Privacy Policy"
+    "title": "Privacy Policy",
+    "save": "Save",
+    "saving": "Saving..."
   },
   "policyPage": {
-    "title": "Usage Policy"
+    "title": "Usage Policy",
+    "save": "Save",
+    "saving": "Saving..."
   },
    "Admins": {
     "admins": "Service Providers",
@@ -320,6 +346,10 @@
 "edit": "Edit",
 "delete": "Delete",
 "UsersPage": {
+  "active" :"Active",
+  "inactive" :"Inactive",
+  "saving" :"Saving...",
+      "password":" Password",
     "image" :"Image",
     "cancel": "Cancel",
     "title": "Users",
@@ -339,20 +369,43 @@
     "realClients": "Real Clients"
   },
   "ArticlesPage": {
-    "titlee": "Articles",
-    "id": "ID",
-    "title": "Title",
-    "author": "Author",
-    "date": "Date",
-    "add": "Add Article",
-    "edit": "Edit",
-    "delete": "Delete",
-    "save": "Save",
+    "save":"Save",
+  "cancel":"Cancel",
+  "deleting" : " Deleting...",
+  "saving":"Saving...",
+  "edit" : "Edit Article",
+    "image" :"Image",
+   "titlee": "Articles",
+  "add": "Add Article",
+  "status" :"Status",
+  "active" :"Active",
+  "inactive" :"Inactive",
+  "id": "ID",
+  "title": "Title",
+  "author": "Author",
+  "date": "Date",
+  "noData": "No articles found",
+  "addModal": {
+    "title": "Add New Article",
+    "titlePlaceholder": "Article Title",
+    "content": "Article Content",
+    "active": "Active",
+    "upload": "Click to upload image",
     "cancel": "Cancel",
-    "noData": "No data available",
-    "deleteMessage": "Are you sure you want to delete article '{title}'?"
+    "submit": "Save",
+    "saving": "Saving...",
+    "errorTitle": "Please enter article title",
+    "errorContent": "Please enter article content",
+    "success": "Article added successfully"
+  },
+  "error": "An error occurred, please try again",
+  "successAdd": "Added successfully",
+  "errorEmpty": "Please fill in all fields"
+
   },
   "ProductsPage": {
+    "category": "Category",
+    "createdAt": "Created At",
     "title": "Products",
     "id": "ID",
     "image": "Image",
@@ -364,10 +417,9 @@
     "delete": "Delete",
     "save": "Save",
     "cancel": "Cancel",
-    "noData": "No data available",
-    "deleteMessage": "Are you sure you want to delete product '{name}'?",
-        "upload": "Upload Image"
-
+    "noData": "No Data Available",
+    "deleteMessage": "Are you sure you want to delete the product '{name}'?",
+    "upload": "Upload Image"
   },
    "cities": {
     "title": "Cities",
@@ -425,7 +477,10 @@
    "login": {
       "title": "Login",
       "subtitle": "Enter your account details to continue",
-      
+      "Welcome": "Welcome to our website",
+  "remember": "Remember me",
+  "noAccount": "Don't have an account?",
+  "register": "Register now",
       "email": "Email",
       "emailPlaceholder": "Enter your email",
       "emailRequired": "Email is required",

@@ -23,6 +23,7 @@ type CustomSelectProps = {
   placeholder?: string;
   options: SelectTypes[];
   error?: string;
+  defaultValue?: string; // قيمة افتراضية للحقل
 };
 
 export default function CustomSelect({
@@ -32,11 +33,13 @@ export default function CustomSelect({
   placeholder,
   options,
   error,
+  defaultValue = "", // افتراضي فارغ
 }: CustomSelectProps) {
   return (
     <Controller
       name={name}
       control={control}
+      defaultValue={defaultValue} // هنا يتم تمرير القيمة الافتراضية
       render={({ field }) => (
         <div className="w-full">
           {label && (
@@ -44,15 +47,15 @@ export default function CustomSelect({
           )}
           <Select
             onValueChange={field.onChange}
-            value={field.value || ""}
+            value={field.value || defaultValue} // هنا نعرض القيمة الافتراضية لو موجودة
           >
-           <SelectTrigger
-  className={`block    w-full bg-transparent border ${
-    error ? "border-red-500" : "border-gray-300"
-  } h-[45px] rounded-[10px] flex items-center px-5`}
->
-  <SelectValue placeholder={placeholder || "اختر..."} />
-</SelectTrigger>
+            <SelectTrigger
+              className={`block w-full bg-transparent border ${
+                error ? "border-red-500" : "border-gray-300"
+              } h-[45px] rounded-[10px] flex items-center px-5`}
+            >
+              <SelectValue placeholder={placeholder || "اختر..."} />
+            </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 {options?.map((option) => (

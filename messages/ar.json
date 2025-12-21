@@ -6,7 +6,14 @@
   },
  "Categories": {
     "title": "الأقسام",
+"add": "إضافة قسم",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "noData": "لا توجد أقسام",
 
+    "id": "الرقم",
+    "name": "الاسم",
+    "description": "الوصف",
     "table": {
       "id": "الرقم",
       "name": "الاسم",
@@ -18,7 +25,14 @@
       "title": "إضافة قسم",
       "placeholder": "اسم القسم",
       "cancel": "إلغاء",
-      "save": "حفظ"
+      "save": "حفظ",
+      "name": "اسم الفئة",
+      "active": "نشط",
+      "upload": "اضغط لرفع الصورة",
+      "submit": "حفظ",
+      "saving": "جارٍ الحفظ...",
+      "success": "تمت إضافة الفئة بنجاح",
+      "errorName": "يرجى إدخال اسم الفئة"
     },
 
     "editModal": {
@@ -75,7 +89,7 @@
     "privacyPolicy": "سياسة الخصوصية",
     "usagePolicy": "سياسة الاستخدام",
     "moderators": "المشرفين",
-    "siteSections": "أقسام الموقع",
+    "siteSections": "الأقسام ",
     "users": "المستخدمين",
     "articles": "المقالات",
     "productsList": "المنتجات",
@@ -299,13 +313,24 @@
     "logoImage": "شعار الموقع",
     "browserIcon": "أيقونة المتصفح",
     "save": "حفظ",
-    "inactive" :"غير نشط"
+    "inactive" :"غير نشط",
+    "saving": "جاري الحفظ...",
+    "loading": "جاري التحميل...",
+    "clickToUploadLogo": "انقر لرفع الشعار",
+    "clickToUploadIcon": "انقر لرفع الأيقونة",
+    "saveSuccess": "تم تحديث الإعدادات بنجاح",
+    "saveError": "فشل في حفظ الإعدادات",
+    "fetchError": "فشل في تحميل الإعدادات"
   },
   "privacyPage": {
-    "title": "سياسة الخصوصية"
+    "title": "سياسة الخصوصية",
+     "save": "حفظ",
+    "saving": "جاري الحفظ..."
   },
   "policyPage": {
-    "title": " سياسة الاستخدام"
+    "title": " سياسة الاستخدام",
+     "save": "حفظ",
+    "saving": "جاري الحفظ..."
   },
   "Admins": {
     "admins": "مزودي الخدمة",
@@ -323,6 +348,15 @@
     }
   },
   "UsersPage": {
+    "saving" :"جاري الحفظ...",
+    "password":"كلمة المرور",
+    "phone": "رقم الهاتف",
+    "city": "المدينة",
+    "status": "الحالة",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "client": "عميل",
+    "lead": "عميل محتمل",
       "title": "العملاء",
       "image" : "الصورة",
     "id": "ID",
@@ -349,20 +383,44 @@
 "edit": "تعديل",
 "delete": "حذف",
 "ArticlesPage": {
-    "titlee": "المقالات",
-    "id": "ID",
-    "title": "العنوان",
-    "author": "المؤلف",
-    "date": "التاريخ",
-    "add": "إضافة مقال",
-    "edit": "تعديل",
-    "delete": "حذف",
-    "save": "حفظ",
+  "delete" : "حذف",
+  "deleting" : "جاري الحذف",
+  "saving":"جاري الحفظ...",
+  "deleteMessage":"هل أنت متأكد من حذف المقالة ؟",
+    "edit" : "تعديل المقالة",
+  "save":"حفظ",
+  "cancel":"إلغاء",
+  "status" :"الحالة",
+  "active" :"نشط",
+  "inactive" :"غير نشط",
+  "image" :"الصورة",
+     "titlee": "المقالات",
+  "add": "إضافة مقال",
+  "id": "رقم",
+  "title": "عنوان",
+  "author": "المؤلف",
+  "date": "التاريخ",
+  "noData": "لا توجد مقالات",
+  "addModal": {
+    "title": "إضافة مقال جديد",
+    "titlePlaceholder": "عنوان المقال",
+    "content": "محتوى المقال",
+    "active": "نشط",
+    "upload": "اضغط لرفع صورة",
     "cancel": "إلغاء",
-    "noData": "لا توجد بيانات",
-    "deleteMessage": "هل أنت متأكد من حذف المقال '{title}'؟"
+    "submit": "حفظ",
+    "saving": "جارٍ الحفظ...",
+    "errorTitle": "الرجاء إدخال عنوان المقال",
+    "errorContent": "الرجاء إدخال محتوى المقال",
+    "success": "تم إضافة المقال بنجاح"
+  },
+  "error": "حدث خطأ، حاول مرة أخرى",
+  "successAdd": "تمت الإضافة بنجاح",
+  "errorEmpty": "الرجاء ملء جميع الحقول"
   },
   "ProductsPage": {
+    "category" :"القسم",
+    "createdAt":"تاريخ الإنشاء",
     "title": "المنتجات",
     "id": "ID",
     "image": "الصورة",
@@ -434,7 +492,10 @@
     "login": {
       "title": "تسجيل الدخول",
       "subtitle": "أدخل بيانات حسابك للمتابعة",
-      
+      "Welcome" : "مرحبا بك في موقعنا",
+      "remember" : "تذكرني",
+      "noAccount" : "ليس لديك حساب ؟",
+      "register" : "سجل الأن",
       "email": "البريد الإلكتروني",
       "emailPlaceholder": "أدخل بريدك الإلكتروني",
       "emailRequired": "البريد الإلكتروني مطلوب",
@@ -525,36 +586,7 @@
       "closed": "مغلقة"
     }
   },
-  "CategoriesPage" : {
-     "title": "الأقسام",
-  "id": "المعرف",
-  "name": "الاسم",
-  "description": "الوصف",
-  "add": "إضافة قسم",
-  "edit": "تعديل",
-  "delete": "حذف",
-  "noData": "لا توجد أقسام",
-  "addModal": {
-    "title": "إضافة قسم جديد",
-    "name": "الاسم",
-    "description": "الوصف",
-    "cancel": "إلغاء",
-    "submit": "إضافة القسم"
-  },
-  "editModal": {
-    "title": "تعديل القسم",
-    "name": "الاسم",
-    "description": "الوصف",
-    "cancel": "إلغاء",
-    "submit": "حفظ التعديلات"
-  },
-  "deleteModal": {
-    "title": "حذف القسم",
-    "message": "هل أنت متأكد أنك تريد حذف هذا القسم؟",
-    "cancel": "إلغاء",
-    "confirm": "حذف"
-  }
-  },
+ 
    "SupportPage": {
     "title": "تذاكر الدعم الفني",
     "noData": "لا توجد بيانات",

@@ -1,11 +1,12 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DataTable from '@/components/shared/reusableComponents/Table';
 import AddCategoryModal from './AddCategoryModal';
 import EditCategoryModal from './EditCategoryModal';
 import DeleteCategoryModal from './DeleteCategoryModal';
 import { useTranslations } from 'next-intl';
 import { Edit, Trash2 } from 'lucide-react';
+import apiServiceCall from '@/lib/apiServiceCall';
 
 export interface Category {
   id: number;
@@ -14,18 +15,33 @@ export interface Category {
 }
 
 export default function CategoriesPage() {
-  const t = useTranslations('CategoriesPage');
+  const t = useTranslations('Categories');
 
-  const [categories, setCategories] = useState<Category[]>([
-    { id: 1, name: 'Electronics', description: 'Phones, Laptops, etc.' },
-    { id: 2, name: 'Clothing', description: 'Men & Women Clothing' },
-    { id: 3, name: 'Furniture', description: 'Home & Office Furniture' },
-  ]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const [addOpen, setAddOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+
+  // 🔹 جلب البيانات من API
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        setLoading(true);
+        const res = await apiServiceCall({ url: 'categories', method: 'GET' });
+        if (res?.data) {
+          setCategories(res.data);
+        }
+      } catch (error) {
+        console.error('Error fetching categories', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const columns = [
     { key: 'id', header: t('id'), align: 'center' },
@@ -33,7 +49,8 @@ export default function CategoriesPage() {
     { key: 'description', header: t('description'), align: 'left' },
   ];
 
-  const handleAdd = (category: Category) => setCategories(prev => [...prev, category]);
+  // 🔹 دوال CRUD
+  const handleAdd = (category: Category) => setCategories(prev => [category, ...prev]);
   const handleEdit = (category: Category) => setCategories(prev => prev.map(c => c.id === category.id ? category : c));
   const handleDelete = (category: Category) => setCategories(prev => prev.filter(c => c.id !== category.id));
 
@@ -68,9 +85,26 @@ export default function CategoriesPage() {
         emptyMessage={t('noData')}
       />
 
-      <AddCategoryModal isOpen={addOpen} onClose={() => setAddOpen(false)} onAdd={handleAdd} t={t} />
-      <EditCategoryModal isOpen={editOpen} onClose={() => setEditOpen(false)} category={selectedCategory} onEdit={handleEdit} t={t} />
-      <DeleteCategoryModal isOpen={deleteOpen} onClose={() => setDeleteOpen(false)} category={selectedCategory} onDelete={handleDelete} t={t} />
+      <AddCategoryModal
+        isOpen={addOpen}
+        onClose={() => setAddOpen(false)}
+        onAdd={handleAdd}
+        t={t}
+      />
+      <EditCategoryModal
+        isOpen={editOpen}
+        onClose={() => setEditOpen(false)}
+        category={selectedCategory}
+        onEdit={handleEdit}
+        t={t}
+      />
+      <DeleteCategoryModal
+        isOpen={deleteOpen}
+        onClose={() => setDeleteOpen(false)}
+        category={selectedCategory}
+        onDelete={handleDelete}
+        t={t}
+      />
     </div>
   );
 }
