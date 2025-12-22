@@ -1,40 +1,61 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Edit, Trash2, FileText, Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
+
 import DataTable from "@/components/shared/reusableComponents/Table";
 import AddPageModal from "./AddPageModal";
 import EditPageModal from "./EditPageModal";
 import DeletePageModal from "./DeletePageModal";
-import { Edit, FileText, Trash2 } from "lucide-react";
+import apiServiceCall from "@/lib/apiServiceCall";
 
 export default function PagesPage() {
   const t = useTranslations("pages");
 
-  // بيانات ستاتيك
-  const [pages, setPages] = useState([
-    { id: 1, title: "سياسة الخصوصية", views: 120 },
-    { id: 2, title: "الشروط والأحكام", views: 80 },
-    { id: 3, title: "من نحن", views: 300 },
-  ]);
+  const [pages, setPages] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<any>(null);
   const [openAdd, setOpenAdd] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
 
+  // Fetch pages from API
+  useEffect(() => {
+    const fetchPages = async () => {
+      setLoading(true);
+      try {
+        const data = await apiServiceCall({ url: "pages", method: "GET" });
+        const mappedPages = data.data.map((p: any) => ({
+          id: p.id,
+          title: p.name,
+          content: p.content || 0, // لو الـ API مش بيرجع views
+          created_at: p.created_at,
+          updated_at: p.updated_at,
+        }));
+        setPages(mappedPages);
+      } catch (error) {
+        console.error("Error fetching pages:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPages();
+  }, []);
+
   const columns = [
-    {
-      key: "title",
-      header: t("pageName"),
-      align: "right",
-    },
-    {
-      key: "views",
-      header: t("views"),
-      align: "center",
-    },
+    { key: "title", header: t("pageName"), align: "right" },
+    { key: "content", header: t("content"), align: "center" },
   ];
+
+  const handleAdd = (page: any) =>
+    setPages((prev) => [...prev, { ...page, id: Date.now() }]);
+  const handleEdit = (page: any) =>
+    setPages((prev) => prev.map((p) => (p.id === page.id ? page : p)));
+  const handleDelete = (page: any) =>
+    setPages((prev) => prev.filter((p) => p.id !== page.id));
 
   return (
     <div className="p-6">
@@ -42,18 +63,18 @@ export default function PagesPage() {
         <h1 className="text-xl font-semibold flex items-center gap-2">
           <FileText size={22} /> {t("title")}
         </h1>
-
         <button
           onClick={() => setOpenAdd(true)}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          className="bg-blue-600 flex items-center gap-1 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
         >
-          {t("addPage")}
+          <Plus size={18} /> {t("addPage")}
         </button>
       </div>
 
       <DataTable
         columns={columns}
         data={pages}
+        loading={loading}
         emptyMessage={t("empty")}
         actions={(row) => (
           <div className="flex items-center justify-center gap-4">
@@ -62,11 +83,10 @@ export default function PagesPage() {
                 setSelected(row);
                 setOpenEdit(true);
               }}
-              className="text-green-600 "
+              className="text-green-600"
             >
-              <Edit/>
+              <Edit size={18} />
             </button>
-
             <button
               onClick={() => {
                 setSelected(row);
@@ -74,20 +94,23 @@ export default function PagesPage() {
               }}
               className="text-red-600 hover:underline"
             >
-              <Trash2/>
+              <Trash2 size={18} />
             </button>
           </div>
         )}
       />
 
-      {/* المودالات */}
-      <AddPageModal open={openAdd} onClose={() => setOpenAdd(false)} setPages={setPages} />
+      <AddPageModal
+        open={openAdd}
+        onClose={() => setOpenAdd(false)}
+        setPages={handleAdd}
+      />
       {selected && (
         <EditPageModal
           open={openEdit}
           onClose={() => setOpenEdit(false)}
           page={selected}
-          setPages={setPages}
+          setPages={handleEdit}
         />
       )}
       {selected && (
@@ -95,7 +118,7 @@ export default function PagesPage() {
           open={openDelete}
           onClose={() => setOpenDelete(false)}
           page={selected}
-          setPages={setPages}
+          setPages={() => handleDelete(selected)}
         />
       )}
     </div>

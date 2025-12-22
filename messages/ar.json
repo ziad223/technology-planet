@@ -180,6 +180,9 @@
   },
 
   "Pages": {
+    "saving" :"جاري الحفظ...",
+    "content" : "المحتوى",
+    "enterContent": "أدخل المحتوي",
     "dashboard": "لوحة التحكم",
     "categories": "الأقسام",
     "categoriesDescription": "إدارة أقسام المنتجات",
@@ -474,6 +477,9 @@
     "delete": "حذف"
   },
    "pages": {
+    "saving" :"جاري الحفظ...",
+    "content" : "المحتوى",
+    "enterContent": "أدخل المحتوي",
     "title": "الصفحات",
     "addPage": "إضافة صفحة",
     "editPage": "تعديل الصفحة",

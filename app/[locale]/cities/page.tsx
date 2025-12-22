@@ -1,36 +1,47 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Plus, Pencil, Trash2, Edit } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Plus, Edit, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import AddCityModal from "./AddCityModal";
 import EditCityModal from "./EditCityModal";
 import DeleteCityModal from "./DeleteCityModal";
+import apiServiceCall from "@/lib/apiServiceCall";
 
 export default function CitiesPage() {
   const t = useTranslations("cities");
 
-  const [cities, setCities] = useState([
-    {
-      id: "1",
-      name_ar: "القاهرة",
-      clients: 120,
-      image: "https://via.placeholder.com/80",
-    },
-    {
-      id: "2",
-      name_ar: "الإسكندرية",
-      clients: 50,
-      image: "https://via.placeholder.com/80",
-    },
-  ]);
+  const [cities, setCities] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const [addOpen, setAddOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const [selectedCity, setSelectedCity] = useState<any>(null);
 
-  const [selectedCity, setSelectedCity] = useState(null);
+  // Fetch cities from API
+  useEffect(() => {
+    const fetchCities = async () => {
+      setLoading(true);
+      try {
+        const data = await apiServiceCall({ url: "cities", method: "GET" });
+        // تحويل البيانات حسب شكل الـ API
+        const mappedCities = data.data.map((c: any) => ({
+          id: c.id.toString(),
+          name_ar: c.name,
+          clients: c.users_count,
+        }));
+        setCities(mappedCities);
+      } catch (error) {
+        console.error("Error fetching cities:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCities();
+  }, []);
 
   const openEdit = (city: any) => {
     setSelectedCity(city);
@@ -56,11 +67,9 @@ export default function CitiesPage() {
 
   return (
     <div className="p-6">
-
       {/* Title + Add Button */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">{t("title")}</h1>
-
         <button
           onClick={() => setAddOpen(true)}
           className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700"
@@ -81,14 +90,12 @@ export default function CitiesPage() {
               <th className="p-3">{t("actions")}</th>
             </tr>
           </thead>
-
           <tbody>
             {cities.map((city, index) => (
               <tr key={city.id} className="border-b text-center">
                 <td className="p-3">{index + 1}</td>
                 <td className="p-3">{city.name_ar}</td>
                 <td className="p-3">{city.clients}</td>
-
                 <td className="p-3 flex justify-center gap-4">
                   <button
                     onClick={() => openEdit(city)}
@@ -96,7 +103,6 @@ export default function CitiesPage() {
                   >
                     <Edit size={20} />
                   </button>
-
                   <button
                     onClick={() => openDelete(city)}
                     className="text-red-600 hover:text-red-700"
@@ -107,26 +113,40 @@ export default function CitiesPage() {
               </tr>
             ))}
           </tbody>
-
         </table>
       </div>
 
       {/* Modals */}
-      {addOpen && <AddCityModal onClose={() => setAddOpen(false)} onSave={addCity} />}
-      {editOpen && (
-        <EditCityModal
-          city={selectedCity}
-          onClose={() => setEditOpen(false)}
-          onSave={updateCity}
-        />
-      )}
-      {deleteOpen && (
-        <DeleteCityModal
-          city={selectedCity}
-          onClose={() => setDeleteOpen(false)}
-          onDelete={deleteCity}
-        />
-      )}
+{addOpen && (
+  <AddCityModal
+    isOpen={addOpen}
+    onClose={() => setAddOpen(false)}
+    onSave={(newCity) => setCities(prev => [...prev, { ...newCity, id: newCity.id.toString() }])}
+  />
+)}     {editOpen && (
+  <EditCityModal
+    isOpen={editOpen}               // مهم تمرير isOpen لتجنب مشاكل الفتح
+    city={selectedCity}             // المدينة اللي هتتحرر
+    onClose={() => setEditOpen(false)} 
+    onSave={(updatedCity) => {
+      setCities(prev =>
+        prev.map(c => (c.id === updatedCity.id ? updatedCity : c))
+      );
+    }}
+  />
+)}
+
+     {deleteOpen && (
+  <DeleteCityModal
+    isOpen={deleteOpen}               // مهم تمرير isOpen لتجنب مشاكل الفتح
+    city={selectedCity}               // المدينة اللي هتحذف
+    onClose={() => setDeleteOpen(false)} 
+    onDelete={(deletedCityId) => {
+      setCities(prev => prev.filter(c => c.id !== deletedCityId));
+    }}
+  />
+)}
+
     </div>
   );
 }

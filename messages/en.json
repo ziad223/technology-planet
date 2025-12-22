@@ -179,6 +179,7 @@
   },
 
   "Pages": {
+    "saving" :"Saving...",
     "dashboard": "Dashboard",
     "categories": "Categories",
     "categoriesDescription": "Manage product categories",
@@ -459,7 +460,11 @@
     "delete": "Delete"
   },
    "pages": {
+    "saving" :" Saving...",
+  
     "title": "Pages",
+    "content" : "Content",
+    "enterContent": " Enter A Content",
     "addPage": "Add Page",
     "editPage": "Edit Page",
     "deletePage": "Delete Page",
