@@ -685,6 +685,19 @@
     "createdAt": "Created At",
     "add": "Add Subcategory",
     "noData": "No data found"
-  }
+  },
+  "CategoriesPage" : {
+    "title": "Categories",
+    "id": "ID",
+    "image": "Image",
+    "name": "Name",
+    "status": "Status",
+    "childrenCount": "Subcategories",
+    "createdAt": "Created At",
+    "noData": "No data found",
+    "fetchError": "Failed to fetch data",
+    "add" :" Add Category"
 
+  }
+ 
   }

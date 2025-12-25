@@ -1,136 +1,112 @@
 'use client';
-import React, { useState, useRef } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
-import { FiUpload } from 'react-icons/fi';
-import apiServiceCall from '@/lib/apiServiceCall';
+import React, { useEffect, useState } from 'react';
+import DataTable from '@/components/shared/reusableComponents/Table';
 import { useTranslations } from 'next-intl';
+import { Edit, Trash2 } from 'lucide-react';
+import { toast } from 'react-toastify';
+import apiServiceCall from '@/lib/apiServiceCall';
+import AddCategoryModal from './AddCategoryModal';
 
-interface AddCategoryModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onAdd: (category: any) => void; // ترجع الكاتيجوري الجديد
+export interface Category {
+  id: number;
+  name: string;
+  status: string;
+  parent_id: number | null;
+  cover_url: string;
+  children_count: number;
+  created_at: string;
 }
 
-export default function AddCategoryModal({ isOpen, onClose, onAdd }: AddCategoryModalProps) {
-  const t = useTranslations('Categories');
+export default function CategoriesPage() {
+  const t = useTranslations('CategoriesPage');
 
-  const [name, setName] = useState('');
-  const [status, setStatus] = useState(1);
-  const [cover, setCover] = useState<File | null>(null);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [editOpen, setEditOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
 
-  if (!isOpen) return null;
-
-  const handleSubmit = async () => {
-    if (!name) {
-      toast.error(t('addModal.errorName'));
-      return;
-    }
-
-    try {
+  // 🔹 Fetch categories from API
+  useEffect(() => {
+    const fetchCategories = async () => {
       setLoading(true);
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('status', status);
-      if (cover) formData.append('cover', cover);
-
-      const res = await apiServiceCall({
-        url: 'categories',
-        method: 'POST',
-        body: formData,
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-
-      if (res?.data) {
-        toast.success(res.message || t('addModal.success'));
-        onAdd(res.data); // نضيف الكاتيجوري الجديد
-        setName('');
-        setStatus(1);
-        setCover(null);
-        setTimeout(() =>{
-          onClose();
-        } , 800)
+      try {
+        const res = await apiServiceCall({ url: 'categories', method: 'GET' });
+        if (res?.data) {
+          setCategories(res.data);
+        }
+      } catch (error) {
+        console.error('Error fetching categories', error);
+        toast.error(t('fetchError'));
+      } finally {
+        setLoading(false);
       }
-    } catch (error: any) {
-      console.error(error);
-      toast.error(error?.message || t('error'));
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
+    fetchCategories();
+  }, [t]);
+
+  // 🔹 Columns
+  const columns = [
+    { key: 'id', header: t('id'), align: 'center' },
+    { 
+      key: 'cover_url', 
+      header: t('image'), 
+      align: 'center', 
+      render: (value: string) => value ? <img src={value} alt="" className="w-12 h-12 rounded object-cover mx-auto"/> : '-' 
+    },
+    { key: 'name', header: t('name'), align: 'left' },
+    { 
+      key: 'status', 
+      header: t('status'), 
+      align: 'center',
+      render: (value: string) => (
+        <span className={`px-2 py-1 rounded text-sm ${value === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+          {value}
+        </span>
+      )
+    },
+    { key: 'children_count', header: t('childrenCount'), align: 'center' },
+    { 
+      key: 'created_at', 
+      header: t('createdAt'), 
+      align: 'center', 
+      render: (value: string) => new Date(value).toLocaleDateString() 
+    },
+  ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <ToastContainer />
-      <div className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-md p-6 space-y-4 shadow-lg">
-        <h2 className="text-xl font-semibold">{t('addModal.title')}</h2>
-
-        {/* الاسم */}
-        <input
-          type="text"
-          placeholder={t('addModal.name')}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full border border-gray-300 rounded px-3 py-2 outline-none"
-        />
-
-        {/* حالة الكاتيجوري */}
-        <label className="flex items-center gap-2 mt-2">
-          <input
-            type="checkbox"
-            checked={status === 1}
-onChange={(e) => setStatus(e.target.checked ? 1 : 0)}
-            className="w-5 h-5"
-          />
-          <span>{t('addModal.active')}</span>
-        </label>
-
-        {/* صندوق رفع الصورة */}
-        <div
-          onClick={() => inputRef.current?.click()}
-          className="w-full h-40 border-2 border-dashed border-gray-300 rounded flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 transition-colors"
+    <div className="p-4 md:p-6">
+      <div className="flex justify-between mb-4">
+        <h1 className="text-2xl font-bold">{t('title')}</h1>
+         <button
+         
+          className="px-4 py-2 bg-blue-600 text-white rounded"
         >
-          {cover ? (
-            <img
-              src={URL.createObjectURL(cover)}
-              alt="preview"
-              className="w-full h-full object-cover rounded"
-            />
-          ) : (
-            <div className="flex flex-col items-center text-gray-500">
-              <FiUpload size={30} />
-              <span>{t('addModal.upload')}</span>
-            </div>
-          )}
-          <input
-            type="file"
-            ref={inputRef}
-            onChange={(e) => setCover(e.target.files?.[0] || null)}
-            className="hidden"
-            accept="image/*"
-          />
-        </div>
-
-        {/* الأزرار */}
-        <div className="flex justify-end gap-2 mt-2">
-          <button
-            onClick={onClose}
-            disabled={loading}
-            className="px-4 py-2 bg-gray-300 rounded"
-          >
-            {t('addModal.cancel')}
-          </button>
-          <button
-            onClick={handleSubmit}
-            disabled={loading}
-            className="px-4 py-2 bg-blue-600 text-white rounded"
-          >
-            {loading ? t('addModal.saving') : t('addModal.submit')}
-          </button>
-        </div>
+          {t('add')}
+        </button>
       </div>
+
+      <DataTable
+        columns={columns}
+        data={categories}
+        loading={loading}
+        emptyMessage={t('noData')}
+        actions={(category: Category) => (
+          <div className="flex justify-center gap-2">
+            <button onClick={() => { setSelectedCategory(category); setEditOpen(true); }} className="p-2 text-green-600">
+              <Edit />
+            </button>
+            <button onClick={() => { setSelectedCategory(category); setDeleteOpen(true); }} className="p-2 text-red-600">
+              <Trash2 />
+            </button>
+          </div>
+        )}
+      />
+
+      <AddCategoryModal/>
+      {/* <EditCategoryModal ... /> */}
+      {/* <DeleteCategoryModal ... /> */}
     </div>
   );
 }
