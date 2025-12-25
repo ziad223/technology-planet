@@ -33,8 +33,12 @@ import {
   UserPlus,
   Briefcase,
   UserCheck,
-  UserCog
+  UserCog,
+  Menu,
+  Users2
 } from "lucide-react";
+import { FaUserShield } from "react-icons/fa";
+import { MdCategory } from "react-icons/md";
 
 interface DashboardSidebarProps {
   locale: string;
@@ -114,6 +118,13 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
       href: `/${locale}/categories`,
       type: "link"
     },
+    { 
+      id: "subCategories", 
+      label: t("subCategories"), 
+      icon: <MdCategory size={20} />, 
+      href: `/${locale}/sub-categories`,
+      type: "link"
+    },
     
     // Articles
     { 
@@ -130,6 +141,13 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
       label: t("products"), 
       icon: <Package size={20} />, 
       href: `/${locale}/products`,
+      type: "link"
+    },
+     { 
+      id: "vendors", 
+      label: t("vendors"), 
+      icon: <Users2 size={20} />, 
+      href: `/${locale}/vendors`,
       type: "link"
     },
     
@@ -151,6 +169,15 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
       type: "link"
     },
 
+
+  {
+  id: "roles",
+  label: t("roles"),
+  icon: <FaUserShield size={20} />,
+  href: `/${locale}/roles`,
+  type: "link",
+},
+
     // Pages
     { 
       id: "pages", 
@@ -160,16 +187,14 @@ const Sidebar: React.FC<DashboardSidebarProps> = ({ locale }) => {
       type: "link"
     },
     
-    // Technical support
     { 
-      id: "technicalSupport", 
-      label: t("technicalSupport"), 
-      icon: <HeadphonesIcon size={20} />, 
-      href: `/${locale}/support`,
+      id: "menus", 
+      label: t("menus"), 
+      icon: <Menu size={20} />, 
+      href: `/${locale}/menus`,
       type: "link"
     },
     
-    // Messages
     { 
       id: "messages", 
       label: t("messages"), 

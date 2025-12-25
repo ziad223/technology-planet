@@ -12,6 +12,10 @@
     "cities": "Cities",
   "sliders": "Sliders",
   "pages": "Pages",
+  "menus" : "Menus",
+        "roles": "Roles", 
+  "vendors": "Vendors",
+
   "clientsAndProviders": "Clients & Service Providers",
   "viewAllArticles": "View all articles",
   "groups": "Groups",
@@ -20,6 +24,7 @@
   "contactUs": "Contact Us",
   "viewCommunicationMessages": "View communication messages",
     "dashboardHome": "Dashboard Home",
+        "subCategories" : "Sub Categories",
   "clients": "Clients",
   "viewAllClients": "View all clients",
   "serviceProviders": "Service Providers",
@@ -511,8 +516,9 @@
     }
   },
    "SupportPage": {
-    "title": "Support Tickets",
-      "noData": "No tickets available",
+    "title": "Support Requests",
+    "noData": "No requests available",
+
     "columns": {
       "number": "#",
       "client": "Client",
@@ -523,21 +529,26 @@
       "comments": "Comments",
       "actions": "Actions"
     },
+
     "actions": {
+      "add": "Add Message",
       "addComment": "Add Comment",
-      "editStatus": "Edit Status",
+      "editStatus": "Change Status",
       "delete": "Delete"
     },
+
     "modal": {
       "cancel": "Cancel"
     },
+
     "messages": {
-      "noData": "No tickets available",
-      "confirmDelete": "Are you sure you want to delete this ticket?",
+      "noData": "No requests available",
+      "confirmDelete": "Are you sure you want to delete this request?",
       "commentAdded": "Comment added successfully",
       "statusUpdated": "Status updated successfully",
-      "ticketDeleted": "Ticket deleted successfully"
+      "ticketDeleted": "Request deleted successfully"
     },
+
     "status": {
       "open": "Open",
       "inProgress": "In Progress",
@@ -547,6 +558,7 @@
   "MessagesPage": {
     "title": "Messages",
       "noData": "No messages available",
+      "add" :" Add Message",
     "columns": {
       "number": "#",
       "sender": "Sender",
@@ -606,39 +618,73 @@
     "confirm": "Delete"
   }
   },
-  "SupportPage": {
-    "title": "Support Tickets",
-    "noData": "No data available",
-    "columns": {
-      "number": "Number",
-      "client": "Client",
-      "address": "Address",
-      "category": "Category",
-      "content": "Content",
-      "status": "Status",
-      "comments": "Comments",
-      "actions": "Actions"
-    },
-    "actions": {
-      "addTicket": "Add Ticket",
-      "addComment": "Add Comment",
-      "editStatus": "Edit Status",
-      "delete": "Delete",
-      "add": "Add",
-      "cancel": "Cancel"
-    },
-    "fields": {
-      "client": "Client Name",
-      "address": "Address",
-      "category": "Category",
-      "content": "Content"
-    },
-    "messages": {
-      "ticketAdded": "Ticket added successfully",
-      "commentAdded": "Comment added successfully",
-      "statusUpdated": "Status updated successfully",
-      "ticketDeleted": "Ticket deleted successfully"
-    }
+  "menus" : {
+ "title": "Menus",
+  "add": "Add Menu",
+  "save": "Save",
+  "cancel": "Cancel",
+  "noData": "No data available",
+  "id": "ID",
+  "name": "Name",
+  "location": "Location",
+  "url": "URL",
+  "page_id": "Page ID",
+  "parent": "Parent Menu",
+  "collapse": "Collapsible",
+  "sort": "Order"
+  },
+  "messages": {
+    "fetchError": "Error fetching data",
+    "added": "Added successfully",
+    "updated": "Updated successfully",
+    "deleted": "Deleted successfully"
+  },
+  "roles": {
+   "title": "Roles",
+    "addRole": "Add Role",
+    "roleName": "Role Name",
+    "permissions": "Permissions",
+    "permissionPlaceholder": "Enter permission",
+    "addPermission": "Add Permission",
+    "save": "Save",
+    "cancel": "Cancel",
+    "successCreate": "Role created successfully!",
+    "errorCreate": "Failed to create role"
+  },
+  "vendors" : {
+    "title": "Vendors",
+  "id": "ID",
+  "image": "Image",
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone",
+  "city": "City",
+  "role": "Role",
+  "status": "Status",
+  "add": "Add Vendor",
+  "noData": "No vendors found",
+  "addVendor": "Add Vendor",
+  "selectCity": "Select City",
+  "selectRole": "Select Role",
+  "password": "Password",
+  "active": "Active",
+  "uploadImage": "Click to upload image",
+  "save": "Save",
+  "cancel": "Cancel",
+  "required": "This field is required",
+  "vendorCreated": "Vendor created successfully",
+  "failedToCreateVendor": "Failed to create vendor"
+  },
+    "SubcategoriesPage": {
+    "title": "Subcategories",
+    "id": "ID",
+    "image": "Image",
+    "name": "Name",
+    "status": "Status",
+    "childrenCount": "Children",
+    "createdAt": "Created At",
+    "add": "Add Subcategory",
+    "noData": "No data found"
   }
 
-}
+  }

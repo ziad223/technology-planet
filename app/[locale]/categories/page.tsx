@@ -1,109 +1,165 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import DataTable from '@/components/shared/reusableComponents/Table';
-import AddCategoryModal from './AddCategoryModal';
-import EditCategoryModal from './EditCategoryModal';
-import DeleteCategoryModal from './DeleteCategoryModal';
 import { useTranslations } from 'next-intl';
-import { Edit, Trash2 } from 'lucide-react';
+import { MessageSquarePlus, Edit, Trash2 } from 'lucide-react';
+import { toast } from 'react-toastify';
 import apiServiceCall from '@/lib/apiServiceCall';
 
-export interface Category {
+import { ModalAddComment } from '../support/ModalAddComment';
+import { ModalEditStatus } from '../support/ModalEditStatus';
+import { ModalDeleteMessage } from './ModalDeleteMessage';
+
+export interface Message {
   id: number;
-  name: string;
-  description: string;
+  sender: string;
+  email: string;
+  content: string;
+  status: string;
+  comments: string;
 }
 
-export default function CategoriesPage() {
-  const t = useTranslations('Categories');
+export default function MessagesPage() {
+  const t = useTranslations('MessagesPage');
 
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
 
   const [addOpen, setAddOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
 
-  // 🔹 جلب البيانات من API
+  // 🔹 جلب الرسائل من API (نفس CategoriesPage)
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchMessages = async () => {
       try {
         setLoading(true);
-        const res = await apiServiceCall({ url: 'categories', method: 'GET' });
+        const res = await apiServiceCall({ url: 'contact-us', method: 'GET' });
+
         if (res?.data) {
-          setCategories(res.data);
+          setMessages(
+            res.data.map((item: any) => ({
+              id: item.id,
+              sender: item.name,
+              email: item.email,
+              content: item.message,
+              status: 'new',
+              comments: '',
+            }))
+          );
         }
       } catch (error) {
-        console.error('Error fetching categories', error);
+        console.error('Error fetching messages', error);
+        toast.error(t('messages.fetchError'));
       } finally {
         setLoading(false);
       }
     };
-    fetchCategories();
-  }, []);
 
+    fetchMessages();
+  }, [t]);
+
+  // 🔹 Columns (زي Categories)
   const columns = [
-    { key: 'id', header: t('id'), align: 'center' },
-    { key: 'name', header: t('name'), align: 'left' },
-    { key: 'description', header: t('description'), align: 'left' },
+    { key: 'id', header: t('columns.number'), align: 'center' },
+    { key: 'sender', header: t('columns.sender'), align: 'left' },
+    { key: 'email', header: t('columns.email'), align: 'left' },
+    { key: 'content', header: t('columns.content'), align: 'left' },
+    { key: 'status', header: t('columns.status'), align: 'center' },
   ];
 
-  // 🔹 دوال CRUD
-  const handleAdd = (category: Category) => setCategories(prev => [category, ...prev]);
-  const handleEdit = (category: Category) => setCategories(prev => prev.map(c => c.id === category.id ? category : c));
-  const handleDelete = (category: Category) => setCategories(prev => prev.filter(c => c.id !== category.id));
+  // 🔹 CRUD Handlers (نفس الأسلوب)
+  const handleAddComment = (comment: string) => {
+    if (!selectedMessage) return;
+    setMessages(prev =>
+      prev.map(m =>
+        m.id === selectedMessage.id ? { ...m, comments: comment } : m
+      )
+    );
+    toast.success(t('messages.commentAdded'));
+  };
+
+  const handleEditStatus = (status: string) => {
+    if (!selectedMessage) return;
+    setMessages(prev =>
+      prev.map(m =>
+        m.id === selectedMessage.id ? { ...m, status } : m
+      )
+    );
+    toast.success(t('messages.statusUpdated'));
+  };
+
+  const handleDelete = (message: Message) => {
+    setMessages(prev => prev.filter(m => m.id !== message.id));
+    toast.success(t('messages.messageDeleted'));
+  };
 
   return (
     <div className="p-4 md:p-6">
       <div className="flex justify-between mb-4">
         <h1 className="text-2xl font-bold">{t('title')}</h1>
-        <button onClick={() => setAddOpen(true)} className="px-4 py-2 bg-blue-600 text-white rounded">
-          {t('add')}
-        </button>
       </div>
 
       <DataTable
         columns={columns}
-        data={categories}
-        actions={(category: Category) => (
+        data={messages}
+        loading={loading}
+        emptyMessage={t('noData')}
+        actions={(message: Message) => (
           <div className="flex justify-center gap-2">
             <button
-              onClick={() => { setSelectedCategory(category); setEditOpen(true); }}
-              className="p-2 rounded text-green-600"
+              onClick={() => {
+                setSelectedMessage(message);
+                setAddOpen(true);
+              }}
+              className="p-2 rounded text-blue-600"
+            >
+              <MessageSquarePlus />
+            </button>
+
+            <button
+              onClick={() => {
+                setSelectedMessage(message);
+                setEditOpen(true);
+              }}
+              className="p-2 rounded text-yellow-600"
             >
               <Edit />
             </button>
+
             <button
-              onClick={() => { setSelectedCategory(category); setDeleteOpen(true); }}
+              onClick={() => {
+                setSelectedMessage(message);
+                setDeleteOpen(true);
+              }}
               className="p-2 rounded text-red-600"
             >
               <Trash2 />
             </button>
           </div>
         )}
-        emptyMessage={t('noData')}
       />
 
-      <AddCategoryModal
+      <ModalAddComment
         isOpen={addOpen}
         onClose={() => setAddOpen(false)}
-        onAdd={handleAdd}
-        t={t}
+        ticket={selectedMessage}
+        onSuccess={handleAddComment}
       />
-      <EditCategoryModal
+
+      <ModalEditStatus
         isOpen={editOpen}
         onClose={() => setEditOpen(false)}
-        category={selectedCategory}
-        onEdit={handleEdit}
-        t={t}
+        ticket={selectedMessage}
+        onSuccess={handleEditStatus}
       />
-      <DeleteCategoryModal
+
+      <ModalDeleteMessage
         isOpen={deleteOpen}
         onClose={() => setDeleteOpen(false)}
-        category={selectedCategory}
-        onDelete={handleDelete}
-        t={t}
+        ticket={selectedMessage}
+        onSuccess={() => selectedMessage && handleDelete(selectedMessage)}
       />
     </div>
   );

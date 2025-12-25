@@ -62,11 +62,15 @@
   "viewCommunicationMessages": "عرض رسائل التواصل",
       "dashboardHome": "الصفحة الرئيسية",
         "cities": "المدن",
+        "menus" : "القوائم",
+        "roles": "الأدوار", 
+        "subCategories" : "الأثسام الفرعية",
   "sliders": "السلايدر",
+  "vendors": "البائعون",
   "pages": "الصفحات",
   "clients": "العملاء",
   "viewAllClients": "عرض جميع العملاء",
-  "serviceProviders": "مزودي الخدمات",
+  "serviceProviders": "مزو دي الخدمات",
   "viewAllProviders": "عرض جميع المزودين",
   "sections": "الأقسام",
   "viewAllSections": "عرض جميع الأقسام",
@@ -526,43 +530,11 @@
       "login": "تسجيل الدخول"
     }
   },
-   "SupportPage": {
-    "title": "طلبات الدعم الفني",
-      "noData": "لا توجد طلبات حالياً",
-    "columns": {
-      "number": "#",
-      "client": "العميل",
-      "address": "العنوان",
-      "category": "الفئة",
-      "content": "المحتوى",
-      "status": "الحالة",
-      "comments": "التعليقات",
-      "actions": "العمليات"
-    },
-    "actions": {
-      "addComment": "إضافة تعليق",
-      "editStatus": "تغيير الحالة",
-      "delete": "حذف"
-    },
-    "modal": {
-      "cancel": "إلغاء"
-    },
-    "messages": {
-      "noData": "لا توجد طلبات حالياً",
-      "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا الطلب؟",
-      "commentAdded": "تمت إضافة التعليق بنجاح",
-      "statusUpdated": "تم تحديث الحالة بنجاح",
-      "ticketDeleted": "تم حذف الطلب بنجاح"
-    },
-    "status": {
-      "open": "مفتوح",
-      "inProgress": "قيد المعالجة",
-      "closed": "مغلق"
-    }
-  },
+  
    "MessagesPage": {
     "title": "الرسائل",
       "noData": "لا توجد رسائل حالياً",
+      "add" :"إضافة رسالة",
     "columns": {
       "number": "#",
       "sender": "المرسل",
@@ -594,18 +566,45 @@
   },
  
    "SupportPage": {
-    "title": "تذاكر الدعم الفني",
-    "noData": "لا توجد بيانات",
+    "title": "طلبات الدعم الفني",
+    "noData": "لا توجد طلبات حالياً",
+ 
     "columns": {
-      "number": "الرقم",
+      "number": "#",
       "client": "العميل",
       "address": "العنوان",
       "category": "الفئة",
       "content": "المحتوى",
       "status": "الحالة",
       "comments": "التعليقات",
-      "actions": "الإجراءات"
+      "actions": "العمليات"
     },
+
+    "actions": {
+      "add": "إضافة رسالة",
+      "addComment": "إضافة تعليق",
+      "editStatus": "تغيير الحالة",
+      "delete": "حذف"
+    },
+
+    "modal": {
+      "cancel": "إلغاء"
+    },
+
+    "messages": {
+      "noData": "لا توجد طلبات حالياً",
+      "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا الطلب؟",
+      "commentAdded": "تمت إضافة التعليق بنجاح",
+      "statusUpdated": "تم تحديث الحالة بنجاح",
+      "ticketDeleted": "تم حذف الطلب بنجاح"
+    },
+
+    "status": {
+      "open": "مفتوح",
+      "inProgress": "قيد المعالجة",
+      "closed": "مغلق"
+    }
+  },
     "actions": {
       "addTicket": "إضافة تذكرة",
       "addComment": "إضافة تعليق",
@@ -625,7 +624,73 @@
       "commentAdded": "تم إضافة التعليق بنجاح",
       "statusUpdated": "تم تحديث الحالة بنجاح",
       "ticketDeleted": "تم حذف التذكرة بنجاح"
-    }
+    },
+  "menus" : {
+       "title": "القوائم",
+  "add": "إضافة قائمة",
+  "save": "حفظ",
+  "cancel": "إلغاء",
+  "noData": "لا توجد بيانات",
+  "id": "الرقم",
+  "name": "الاسم",
+  "location": "المكان",
+  "url": "الرابط",
+  "page_id": "معرف الصفحة",
+  "parent": "القائمة الأصلية",
+  "collapse": "قابل للطي",
+  "sort": "الترتيب"
+  },
+  "messages": {
+    "fetchError": "حدث خطأ أثناء جلب البيانات",
+    "added": "تمت الإضافة بنجاح",
+    "updated": "تم التحديث بنجاح",
+    "deleted": "تم الحذف بنجاح"
+  },
+   "roles": {
+    "title": "الأدوار",
+    "addRole": "إضافة دور",
+    "roleName": "اسم الدور",
+    "permissions": "الصلاحيات",
+    "permissionPlaceholder": "أدخل صلاحية",
+    "addPermission": "إضافة صلاحية",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "successCreate": "تم إنشاء الدور بنجاح!",
+    "errorCreate": "حدث خطأ أثناء إنشاء الدور"
+  },
+  "vendors" : {
+     "title": "الموردين",
+  "id": "المعرف",
+  "image": "الصورة",
+  "name": "الاسم",
+  "email": "البريد الإلكتروني",
+  "phone": "الهاتف",
+  "city": "المدينة",
+  "role": "الدور",
+  "status": "الحالة",
+  "add": "إضافة مورد",
+  "noData": "لا يوجد موردين",
+  "addVendor": "إضافة مورد",
+  "selectCity": "اختر المدينة",
+  "selectRole": "اختر الدور",
+  "password": "كلمة المرور",
+  "active": "نشط",
+  "uploadImage": "اضغط لرفع الصورة",
+  "save": "حفظ",
+  "cancel": "إلغاء",
+  "required": "هذا الحقل مطلوب",
+  "vendorCreated": "تم إنشاء المورد بنجاح",
+  "failedToCreateVendor": "فشل في إنشاء المورد"
+  },
+   "SubcategoriesPage": {
+    "title": "الأقسام الفرعية",
+    "id": "المعرف",
+    "image": "الصورة",
+    "name": "الاسم",
+    "status": "الحالة",
+    "childrenCount": "عدد الأقسام الفرعية",
+    "createdAt": "تاريخ الإنشاء",
+    "add": "إضافة قسم فرعي",
+    "noData": "لا توجد بيانات"
   }
-
-}
+  }
